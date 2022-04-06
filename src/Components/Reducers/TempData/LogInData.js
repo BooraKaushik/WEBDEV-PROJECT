@@ -1,1 +1,1 @@
-export default { LogIn: "", Password: "", User: "" };
+export default { LogIn: false, Password: "", User: "" };
