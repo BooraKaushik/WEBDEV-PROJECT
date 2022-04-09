@@ -41,7 +41,7 @@ const LoginComponent = () => {
   };
 
   return (
-    <div className="position-relative mx-auto my-5 p-5 wd-login-container">
+    <div className="mx-auto my-5 p-5 wd-login-container">
       <div className="wd-form-login-text">
         <h3>LOGIN</h3>
       </div>
@@ -52,7 +52,7 @@ const LoginComponent = () => {
             className={`form-control${errors.email ? " is-invalid" : ""}`}
             id="Email"
             name="email"
-            value={data.email.value}
+            value={data.email}
             onChange={(event) => putData(event)}
           />
           <label htmlFor="Email">Email</label>
