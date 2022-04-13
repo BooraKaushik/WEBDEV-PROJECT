@@ -1,10 +1,9 @@
 import { LOGIN_USER } from "../Actions/Login";
-import LogInData from "./TempData/LogInData";
 
-const LogInReducer = (state = LogInData, action) => {
+const LogInReducer = (state = { logedIn: false, user: {} }, action) => {
   switch (action.type) {
     case LOGIN_USER:
-      return {};
+      return { logedIn: true, user: action.loginInfo };
     default:
       return state;
   }

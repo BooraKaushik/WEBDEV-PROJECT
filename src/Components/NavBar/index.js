@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav
+      className="navbar navbar-expand-sm navbar-dark"
+      style={{ backgroundColor: "#2874f0" }}
+    >
       <div className="container">
         <span
           className="navbar-brand mx-1 mx-md-3 mb-0 h1"

@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginAction } from "../Actions/Login";
 import "./login.css";
 
 const LoginComponent = () => {
   const [data, updateData] = useState({
     email: "",
     password: "",
+  });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [loginMessage, setLoginMessage] = useState({
+    error: false,
+    msg: "",
   });
   const [errors, updateErrors] = useState({});
   const [valid, setValid] = useState(false);
@@ -21,10 +30,15 @@ const LoginComponent = () => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && valid) {
-      console.log(data);
+      loginAction(dispatch, data).then((data) => {
+        if (data.success) {
+          navigate("/signup");
+        } else {
+          setLoginMessage({ error: true, msg: data.message });
+        }
+      });
     }
   }, [errors]);
-
   const validation = (value) => {
     const errors = {};
     const regexp =
@@ -45,6 +59,9 @@ const LoginComponent = () => {
       <div className="wd-form-login-text">
         <h3>LOGIN</h3>
       </div>
+      {loginMessage.error && (
+        <div className="alert alert-warning">{loginMessage.msg}</div>
+      )}
       <form>
         <div className="form-floating my-3">
           <input
