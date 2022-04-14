@@ -16,3 +16,8 @@ export const isloggedinService = () => {
   if (localStorage.getItem("LoginToken")) return true;
   else return false;
 };
+
+export const logOutService = () => {
+  localStorage.removeItem("LoggedIn");
+  localStorage.removeItem("LoginToken");
+};

@@ -1,6 +1,11 @@
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Navigate } from "react-router-dom";
+import { isloggedinService, logOutService } from "../../Services/LoginService";
+import { logoutAction } from "../Actions/Login";
 
 const NavBar = () => {
+  const login = useSelector((state) => state.LogIn);
+  const dispatch = useDispatch();
   return (
     <nav
       className="navbar navbar-expand-sm navbar-dark"
@@ -34,21 +39,44 @@ const NavBar = () => {
               <Link
                 className="nav-link"
                 style={{ color: "rgba(255, 255, 255, 0.932)" }}
-                to="#"
+                to="home/"
               >
-                SignIn
+                Home
               </Link>
             </li>
-
             <li className="nav-item active mx-3">
               <Link
                 className="nav-link"
                 style={{ color: "rgba(255, 255, 255, 0.932)" }}
-                to="#"
+                to="home/"
               >
-                <strong> LogOut</strong>
+                Search
               </Link>
             </li>
+            {login.logedIn ? (
+              <li className="nav-item active mx-3">
+                <Link
+                  className="nav-link"
+                  style={{ color: "rgba(255, 255, 255, 0.932)" }}
+                  onClick={async () => {
+                    await logoutAction(dispatch);
+                  }}
+                  to="#"
+                >
+                  <strong> LogOut</strong>
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-item active mx-3">
+                <Link
+                  className="nav-link"
+                  style={{ color: "rgba(255, 255, 255, 0.932)" }}
+                  to="login/"
+                >
+                  <strong> LogIn</strong>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

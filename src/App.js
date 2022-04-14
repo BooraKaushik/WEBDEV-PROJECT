@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navigate, BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginComponent from "./Components/LoginComponent";
 import SignUpComponent from "./Components/SignUpComponent";
 import Template from "./Components/Template";
@@ -15,7 +15,11 @@ function App() {
             <Route
               path="login/"
               element={
-                isloggedinService() ? <SignUpComponent /> : <LoginComponent />
+                isloggedinService() ? (
+                  <Navigate to="/signup" />
+                ) : (
+                  <LoginComponent />
+                )
               }
             ></Route>
             <Route path="signup/" element={<SignUpComponent />}></Route>
