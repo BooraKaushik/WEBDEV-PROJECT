@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginAction } from "../Actions/Login";
 import "./login.css";
 
@@ -32,7 +32,7 @@ const LoginComponent = () => {
     if (Object.keys(errors).length === 0 && valid) {
       loginAction(dispatch, data).then((data) => {
         if (data.success) {
-          navigate("/signup");
+          navigate("/");
         } else {
           setLoginMessage({ error: true, msg: data.message });
         }
@@ -60,7 +60,7 @@ const LoginComponent = () => {
         <h3>LOGIN</h3>
       </div>
       {loginMessage.error && (
-        <div className="alert alert-warning">{loginMessage.msg}</div>
+        <div className="alert alert-warning ">{loginMessage.msg}</div>
       )}
       <form>
         <div className="form-floating my-3">
@@ -89,6 +89,9 @@ const LoginComponent = () => {
             {errors.password ? errors.password : ""}
           </p>
         </div>
+        <Link to="/signup" className="float-end me-2 mb-3">
+          Create Account
+        </Link>
         <div>
           <button
             className="btn btn-primary rounded-pill w-100 p-2"

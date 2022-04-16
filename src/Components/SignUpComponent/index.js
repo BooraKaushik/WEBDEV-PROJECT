@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import SignupAction from "../Actions/Signup";
 import "./index.css";
 
 const SignUpComponent = () => {
@@ -54,6 +56,7 @@ const SignUpComponent = () => {
     "Wisconsin",
     "Wyoming",
   ];
+  const navigate = useNavigate();
   const [data, updateData] = useState({
     firstName: "",
     lastName: "",
@@ -72,6 +75,7 @@ const SignUpComponent = () => {
     type: "Customer",
   });
   const [errors, updateErrors] = useState({});
+  const [serverMessage, setServerMessage] = useState({ error: false, msg: "" });
   const [valid, setValid] = useState(false);
   const putData = (event) => {
     const { name, value } = event.target;
@@ -89,7 +93,14 @@ const SignUpComponent = () => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && valid) {
-      console.log(data);
+      SignupAction(data).then((data) => {
+        console.log(data);
+        if (data.success) {
+          navigate("/login");
+        } else {
+          setServerMessage({ error: true, msg: "User Already exists" });
+        }
+      });
     }
   }, [errors]);
 
@@ -158,6 +169,9 @@ const SignUpComponent = () => {
       <div className="wd-form-signup-text">
         <h3>SIGN UP</h3>
       </div>
+      {serverMessage.error && (
+        <div className="alert alert-warning">{serverMessage.msg}</div>
+      )}
       <form>
         <div className="row g-3">
           <div className="col-sm-6">
