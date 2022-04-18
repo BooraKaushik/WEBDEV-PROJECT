@@ -31,8 +31,8 @@ function App() {
             ></Route>
             <Route path="signup/" element={<SignUpComponent />}></Route>
 
-              <Route path="/search"
-                     element={<Search/>}/>
+            <Route path="/search"
+                 element={<Search/>}/>
               <Route path="/details/:product_id"
                      element={<Details/>}/>
           </Route>
