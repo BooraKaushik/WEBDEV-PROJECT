@@ -39,7 +39,7 @@ const NavBar = () => {
               <Link
                 className="nav-link"
                 style={{ color: "rgba(255, 255, 255, 0.932)" }}
-                to="home/"
+                to="/"
               >
                 Home
               </Link>
@@ -53,6 +53,20 @@ const NavBar = () => {
                 Search
               </Link>
             </li>
+            {login.logedIn && (
+              <li className="nav-item active mx-3">
+                <Link
+                  className="nav-link"
+                  style={{ color: "rgba(255, 255, 255, 0.932)" }}
+                  onClick={async () => {
+                    await logoutAction(dispatch);
+                  }}
+                  to="/profile"
+                >
+                  <strong> View Profile</strong>
+                </Link>
+              </li>
+            )}
             {login.logedIn ? (
               <li className="nav-item active mx-3">
                 <Link

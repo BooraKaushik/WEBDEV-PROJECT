@@ -1,4 +1,5 @@
-import {Link, BrowserRouter, Route, Routes } from "react-router-dom";
+import { Link, Navigate, BrowserRouter, Route, Routes } from "react-router-dom";
+import Card from "./Components/HomePage/Card";
 import LoginComponent from "./Components/LoginComponent";
 import SignUpComponent from "./Components/SignUpComponent";
 import Template from "./Components/Template";
@@ -19,14 +20,11 @@ function App() {
             {/* ROUTES MUST BE DECLARED IN THIS AS CHILDREN */}
             {/* <Route index element={<LoginComponent />}></Route> */}
 
+            <Route index element={<Card />}></Route>
             <Route
               path="login/"
               element={
-                isloggedinService() ? (
-                  <Link to="/signup" />
-                ) : (
-                  <LoginComponent />
-                )
+                isloggedinService() ? <Navigate to="/" /> : <LoginComponent />
               }
             ></Route>
             <Route path="signup/" element={<SignUpComponent />}></Route>
