@@ -1,0 +1,18 @@
+.wd-margin-left {
+    margin-left: 12px;
+}
+
+.wd-bg-image {
+    background-image: url("../Images/search_background.jpeg");
+    background-color: #cccccc;
+    height: 600px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
+
+.wd-bg-transparent {
+    background-color: rgba(76, 175, 80, 0.3)
+}

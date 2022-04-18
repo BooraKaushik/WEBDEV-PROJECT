@@ -48,7 +48,7 @@ const NavBar = () => {
               <Link
                 className="nav-link"
                 style={{ color: "rgba(255, 255, 255, 0.932)" }}
-                to="home/"
+                to="search/"
               >
                 Search
               </Link>
