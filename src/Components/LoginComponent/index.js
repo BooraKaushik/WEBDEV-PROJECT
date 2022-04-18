@@ -38,7 +38,7 @@ const LoginComponent = () => {
         }
       });
     }
-  }, [errors]);
+  }, [errors, data, navigate, dispatch, valid]);
   const validation = (value) => {
     const errors = {};
     const regexp =

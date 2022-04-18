@@ -1,4 +1,6 @@
 import { Navigate, BrowserRouter, Route, Routes } from "react-router-dom";
+import AddAddress from "./Components/AddAddress";
+import AddPayment from "./Components/AddPayment";
 import Card from "./Components/HomePage/Card";
 import LoginComponent from "./Components/LoginComponent";
 import SignUpComponent from "./Components/SignUpComponent";
@@ -20,7 +22,14 @@ function App() {
                 isloggedinService() ? <Navigate to="/" /> : <LoginComponent />
               }
             ></Route>
-            <Route path="signup/" element={<SignUpComponent />}></Route>
+            <Route
+              path="signup/"
+              element={
+                isloggedinService() ? <Navigate to="/" /> : <SignUpComponent />
+              }
+            ></Route>
+            <Route path="addaddress/" element={<AddAddress />}></Route>
+            <Route path="addpayment/" element={<AddPayment />}></Route>
           </Route>
         </Routes>
       </div>

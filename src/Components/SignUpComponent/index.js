@@ -94,7 +94,6 @@ const SignUpComponent = () => {
   useEffect(() => {
     if (Object.keys(errors).length === 0 && valid) {
       SignupAction(data).then((data) => {
-        console.log(data);
         if (data.success) {
           navigate("/login");
         } else {
@@ -102,7 +101,7 @@ const SignUpComponent = () => {
         }
       });
     }
-  }, [errors]);
+  }, [errors, navigate, valid, data]);
 
   const validation = (value) => {
     const errors = {};
@@ -111,7 +110,7 @@ const SignUpComponent = () => {
     const regexpPassword =
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{4,20}$/;
     const regexpPhone =
-      /^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+      /^(\+\d{1,2}\s?)?1?-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
     if (!value.firstName) {
       errors.firstName = "First Name is Required";
     }
@@ -335,7 +334,7 @@ const SignUpComponent = () => {
                   className={`form-control${errors.city ? " is-invalid" : ""}`}
                   id="city"
                   name="city"
-                  value={data.city}
+                  value={data.address.city}
                   onChange={(event) => putAddressData(event)}
                 />
                 <label htmlFor="city">City</label>
@@ -374,7 +373,7 @@ const SignUpComponent = () => {
                   }`}
                   id="zipcode"
                   name="zipcode"
-                  value={data.zipcode}
+                  value={data.address.zipcode}
                   onChange={(event) => putAddressData(event)}
                 />
                 <label htmlFor="zipcode">Zip Code</label>

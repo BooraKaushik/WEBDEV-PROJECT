@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
-import { isloggedinService, logOutService } from "../../Services/LoginService";
+import { Link } from "react-router-dom";
 import { logoutAction } from "../Actions/Login";
 
 const NavBar = () => {
@@ -58,9 +57,6 @@ const NavBar = () => {
                 <Link
                   className="nav-link"
                   style={{ color: "rgba(255, 255, 255, 0.932)" }}
-                  onClick={async () => {
-                    await logoutAction(dispatch);
-                  }}
                   to="/profile"
                 >
                   <strong> View Profile</strong>
@@ -85,7 +81,7 @@ const NavBar = () => {
                 <Link
                   className="nav-link"
                   style={{ color: "rgba(255, 255, 255, 0.932)" }}
-                  to="login/"
+                  to="/login"
                 >
                   <strong> LogIn</strong>
                 </Link>

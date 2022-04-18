@@ -13,7 +13,7 @@ export const loginService = async (login) => {
   return loginInfo.data;
 };
 export const isloggedinService = () => {
-  if (localStorage.getItem("LoginToken")) return true;
+  if (localStorage.getItem("LoginToken") !== null) return true;
   else return false;
 };
 
