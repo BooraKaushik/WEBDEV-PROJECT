@@ -1,13 +1,23 @@
 import {
   createAddressAdao,
   findOneAddressAdao,
+  removeUserAdao,
   updateUserAdao,
 } from "../../DAO/AddressDao.js";
 import {
+  createPaymentsPdao,
+  findOnePaymentsPdao,
+  removeUserPdao,
+  updateUserPdao,
+} from "../../DAO/PaymentDao.js";
+import {
   addAddressUdao,
+  addPaymentUdao,
   deleteUserUdao,
   findAllUsersUdao,
   findOneUserUdao,
+  removeAddressUdao,
+  removePaymentUdao,
 } from "../../DAO/UserDao.js";
 import auth from "../../Middleware/authController.js";
 import authenticate from "../../Middleware/authenticate.js";
@@ -51,6 +61,7 @@ const UsersController = (app) => {
     const user = await findOneUserUdao(req.params["id"]);
     if (user == null) {
       res.json({ error: "No User Found with this ID", user });
+      return;
     }
     res.json({
       error: "",
@@ -71,6 +82,7 @@ const UsersController = (app) => {
     const user = await findOneUserUdao(req.body.id);
     if (user == null) {
       res.json({ error: "No User Found with this ID", user });
+      return;
     }
     res.json({
       error: "",
@@ -88,6 +100,51 @@ const UsersController = (app) => {
     const user = await addAddressUdao(req.body.uid, address._id);
     if (user.n <= 0) {
       res.json({ error: "No User Found with this ID", user });
+      return;
+    }
+    res.json({
+      error: "",
+      user,
+    });
+  });
+  //remove address
+  app.put("/api/remove-address/", authenticate, async (req, res) => {
+    const addAddress = await removeUserAdao(req.body.aid, req.body.uid);
+    const user = await removeAddressUdao(req.body.uid, req.body.aid);
+    if (user.n <= 0) {
+      res.json({ error: "No User Found with this ID", user });
+      return;
+    }
+    res.json({
+      error: "",
+      user,
+    });
+  });
+
+  //adds Card to a user
+  app.put("/api/add-payment/", authenticate, async (req, res) => {
+    let payment = await findOnePaymentsPdao(req.body.payment);
+    if (payment == null) {
+      payment = await createPaymentsPdao(req.body.payment);
+    }
+    const addPayment = await updateUserPdao(payment._id, req.body.uid);
+    const user = await addPaymentUdao(req.body.uid, payment._id);
+    if (user.n <= 0) {
+      res.json({ error: "No User Found with this ID", user });
+      return;
+    }
+    res.json({
+      error: "",
+      user,
+    });
+  });
+  //remove Payment
+  app.put("/api/remove-payment/", authenticate, async (req, res) => {
+    const removeAddress = await removeUserPdao(req.body.pid, req.body.uid);
+    const user = await removePaymentUdao(req.body.uid, req.body.pid);
+    if (user.n <= 0) {
+      res.json({ error: "No User Found with this ID", user });
+      return;
     }
     res.json({
       error: "",

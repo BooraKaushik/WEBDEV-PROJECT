@@ -10,7 +10,13 @@ const schema = mongoose.Schema({
     { type: mongoose.Schema.Types.ObjectId, ref: "Addresses", default: [] },
   ],
   cart: [{ type: mongoose.Schema.Types.ObjectId, default: [] }],
-  paymentInfo: [{ type: mongoose.Schema.Types.ObjectId, default: [] }],
+  paymentInfo: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "PaymentDetails",
+      default: [],
+    },
+  ],
   reviews: [{ type: mongoose.Schema.Types.ObjectId, default: [] }],
   phone: { type: String, required: true },
   type: { type: String, required: true },

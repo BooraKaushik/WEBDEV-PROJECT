@@ -114,6 +114,7 @@ const login = (req, res, next) => {
           let token = jwt.sign({ name: User.firstName }, "3HD71q2k", {
             expiresIn: "2h",
           });
+          req.user = user;
           res.json({
             success: true,
             message: "Login Successful!",
