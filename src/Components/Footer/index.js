@@ -16,24 +16,24 @@ const Footer = () => {
         <h5>Section</h5>
         <ul className="nav flex-column">
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               Home
-            </a>
+            </Link>
           </li>
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               About
-            </a>
+            </Link>
           </li>
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               FAQ
-            </a>
+            </Link>
           </li>
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               Features
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
@@ -41,24 +41,24 @@ const Footer = () => {
         <h5>Section</h5>
         <ul className="nav flex-column">
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               Home
-            </a>
+            </Link>
           </li>
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               About
-            </a>
+            </Link>
           </li>
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               FAQ
-            </a>
+            </Link>
           </li>
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               Features
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
@@ -66,24 +66,24 @@ const Footer = () => {
         <h5>Section</h5>
         <ul className="nav flex-column">
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               Home
-            </a>
+            </Link>
           </li>
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               About
-            </a>
+            </Link>
           </li>
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               FAQ
-            </a>
+            </Link>
           </li>
           <li className="nav-item mb-2">
-            <a href="/" className="nav-link p-0 text-muted">
+            <Link to="/" className="nav-link p-0 text-muted">
               Features
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

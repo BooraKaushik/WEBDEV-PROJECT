@@ -69,9 +69,9 @@ const NavBar = () => {
                   className="nav-link"
                   style={{ color: "rgba(255, 255, 255, 0.932)" }}
                   onClick={async () => {
-                    await logoutAction(dispatch);
+                    logoutAction(dispatch);
                   }}
-                  to="#"
+                  to="/"
                 >
                   <strong> LogOut</strong>
                 </Link>
@@ -81,6 +81,9 @@ const NavBar = () => {
                 <Link
                   className="nav-link"
                   style={{ color: "rgba(255, 255, 255, 0.932)" }}
+                  onClick={() => {
+                    console.log("CLicked Login Again");
+                  }}
                   to="/login"
                 >
                   <strong> LogIn</strong>
