@@ -14,7 +14,7 @@ export const loginAction = async (dispatch, login) => {
   return loginInfo;
 };
 
-export const logoutAction = async (dispatch) => {
+export const logoutAction = (dispatch) => {
   dispatch({
     type: LOGOUT_USER,
   });

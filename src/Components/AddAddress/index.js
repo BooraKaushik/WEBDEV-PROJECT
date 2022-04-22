@@ -126,35 +126,33 @@ const AddAddress = () => {
     <div className="my-5">
       <ul className="list-group">
         {addresses.length > 0 &&
-          addresses
-            .filter((value, index, self) => self.indexOf(value) === index)
-            .map((element) => {
-              return (
-                <li className="list-group-item ps-5" key={element._id}>
-                  <div className="row">
-                    <div className="col-10">
-                      {element && element.addressLine && (
-                        <p>{element.addressLine},</p>
-                      )}
-                      {element && element.addressLine2 && (
-                        <p>{element.addressLine2},</p>
-                      )}
-                      {element && element.city && <p>{element.city},</p>}
-                      {element && element.state && <p>{element.state},</p>}
-                      {element && element.zipcode && <p>{element.zipcode}</p>}
-                    </div>
-                    <span className="col-md-2 my-auto text-align-center">
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => deleteAddress(element._id)}
-                      >
-                        Delete
-                      </button>
-                    </span>
+          addresses.map((element) => {
+            return (
+              <li className="list-group-item ps-5" key={element._id}>
+                <div className="row">
+                  <div className="col-10">
+                    {element && element.addressLine && (
+                      <p>{element.addressLine},</p>
+                    )}
+                    {element && element.addressLine2 && (
+                      <p>{element.addressLine2},</p>
+                    )}
+                    {element && element.city && <p>{element.city},</p>}
+                    {element && element.state && <p>{element.state},</p>}
+                    {element && element.zipcode && <p>{element.zipcode}</p>}
                   </div>
-                </li>
-              );
-            })}
+                  <span className="col-md-2 my-auto text-align-center">
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteAddress(element._id)}
+                    >
+                      Delete
+                    </button>
+                  </span>
+                </div>
+              </li>
+            );
+          })}
       </ul>
       <button
         className={`btn btn-primary rounded-pill w-100 ${

@@ -13,7 +13,6 @@ export const RemovePaymentAction = async (pid) => {
 };
 export const getPaymentAction = async (dispatch) => {
   const info = await getUserInfo();
-  console.log("test");
   dispatch({
     type: ADD_PAYMENT,
     paymentInfo: info.user.paymentInfo,

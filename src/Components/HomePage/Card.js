@@ -32,6 +32,7 @@ const Card = () => {
   };
 
   useEffect(() => {
+    console.log(localStorage.getItem("LoginToken"));
     SearchByTitle();
   }, []);
 

@@ -1,45 +1,59 @@
-import { Link, Navigate, BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddAddress from "./Components/AddAddress";
 import AddPayment from "./Components/AddPayment";
 import Card from "./Components/HomePage/Card";
 import LoginComponent from "./Components/LoginComponent";
 import SignUpComponent from "./Components/SignUpComponent";
 import Template from "./Components/Template";
-import { isloggedinService } from "./Services/LoginService";
-// import './vendors/bootstrap/css/bootstrap.min.css';
-// // import './vendors/bootstrap/bootstrap.min.css';
-// import './vendors/fontawesome/css/all.min.css';
 import Search from "./Components/Search";
 import Details from "./Components/Search/details";
+import LogedIn from "./Components/LogedIn";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Template />}>
+          <Route path="/" exact={true} element={<Template />}>
             {/* ROUTES MUST BE DECLARED IN THIS AS CHILDREN */}
             {/* <Route index element={<LoginComponent />}></Route> */}
 
-            <Route index element={<Card />}></Route>
             <Route
-              path="login/"
+              path="/login"
+              exact={true}
               element={
-                isloggedinService() ? <Navigate to="/" /> : <LoginComponent />
+                <LogedIn>
+                  <LoginComponent />
+                </LogedIn>
               }
             ></Route>
             <Route
-              path="signup/"
+              path="/register"
+              exact={true}
               element={
-                isloggedinService() ? <Navigate to="/" /> : <SignUpComponent />
+                <LogedIn>
+                  <SignUpComponent />
+                </LogedIn>
               }
             ></Route>
-            <Route path="addaddress/" element={<AddAddress />}></Route>
-            <Route path="addpayment/" element={<AddPayment />}></Route>
-            <Route path="signup/" element={<SignUpComponent />}></Route>
+            <Route
+              path="/addaddress"
+              exact={true}
+              element={<AddAddress />}
+            ></Route>
+            <Route
+              path="/addpayment"
+              exact={true}
+              element={<AddPayment />}
+            ></Route>
 
-            <Route path="/search" element={<Search />} />
-            <Route path="/details/:product_id" element={<Details />} />
+            <Route path="/search" exact={true} element={<Search />} />
+            <Route
+              path="/details/:product_id"
+              exact={true}
+              element={<Details />}
+            />
+            <Route index element={<Card />}></Route>
           </Route>
         </Routes>
       </div>

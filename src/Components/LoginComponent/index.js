@@ -35,6 +35,7 @@ const LoginComponent = () => {
           navigate("/");
         } else {
           setLoginMessage({ error: true, msg: data.message });
+          setValid(false);
         }
       });
     }
@@ -89,7 +90,7 @@ const LoginComponent = () => {
             {errors.password ? errors.password : ""}
           </p>
         </div>
-        <Link to="/signup" className="float-end me-2 mb-3">
+        <Link to="/register" className="float-end me-2 mb-3">
           Create Account
         </Link>
         <div>
