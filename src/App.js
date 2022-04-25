@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AddAddress from "./Components/AddAddress";
 import AddPayment from "./Components/AddPayment";
 import Card from "./Components/HomePage/Card";
@@ -8,13 +8,15 @@ import Template from "./Components/Template";
 import Search from "./Components/Search";
 import Details from "./Components/Search/details";
 import LogedIn from "./Components/LogedIn";
+import Profile from "./Components/Profile";
+import UserInformation from "./Components/userInformation";
 
 function App() {
     return (
         <BrowserRouter>
             <div className="App">
                 <Routes>
-                    <Route path="/" exact={true} element={<Template />}>
+                    <Route path="/" exact={true} element={<Template/>}>
                         {/* ROUTES MUST BE DECLARED IN THIS AS CHILDREN */}
                         {/* <Route index element={<LoginComponent />}></Route> */}
 
@@ -23,7 +25,7 @@ function App() {
                             exact={true}
                             element={
                                 <LogedIn>
-                                    <LoginComponent />
+                                    <LoginComponent/>
                                 </LogedIn>
                             }
                         ></Route>
@@ -32,28 +34,33 @@ function App() {
                             exact={true}
                             element={
                                 <LogedIn>
-                                    <SignUpComponent />
+                                    <SignUpComponent/>
                                 </LogedIn>
                             }
                         ></Route>
-                        <Route
-                            path="/addaddress"
-                            exact={true}
-                            element={<AddAddress />}
-                        ></Route>
-                        <Route
-                            path="/addpayment"
-                            exact={true}
-                            element={<AddPayment />}
-                        ></Route>
 
-                        <Route path="/search" exact={true} element={<Search />} />
+                        <Route path="/profile" element={<Profile/>}>
+                            <Route path="/profile/userinformation"
+                                   exact={true}
+                                   element={<UserInformation/>} ></Route>
+                            <Route
+                                path="/profile/addaddress"
+                                exact={true}
+                                element={<AddAddress/>}
+                            ></Route>
+                            <Route
+                                path="/profile/addpayment"
+                                exact={true}
+                                element={<AddPayment/>}
+                            ></Route>
+                        </Route>
+                        <Route path="/search" exact={true} element={<Search/>}/>
                         <Route
                             path="/details/:product_id"
                             exact={true}
-                            element={<Details />}
+                            element={<Details/>}
                         />
-                        <Route index element={<Card />}></Route>
+                        <Route index element={<Card/>}></Route>
                     </Route>
                 </Routes>
             </div>

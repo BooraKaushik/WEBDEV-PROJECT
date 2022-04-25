@@ -1,0 +1,24 @@
+import axios from "axios";
+
+const API_URL = process.env.REACT_APP_API_SARK || "http://localhost:4300/api";
+
+const GET_USER_DETAILS_URL =`${API_URL}/logged-user`;
+
+export const GetUserDetails=async()=>{
+    const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
+    console.log({
+        id: loginInfo._id
+    });
+    const data = await axios.post(
+        GET_USER_DETAILS_URL,
+        {
+            id: loginInfo._id,
+        },
+        {
+            headers: {
+                authorization: localStorage.getItem("LoginToken"),
+            },
+        }
+    );
+    return data.data.user;
+}
