@@ -9,6 +9,8 @@ import Search from "./Components/Search";
 import Details from "./Components/Search/details";
 import LogedIn from "./Components/LogedIn";
 import PrivacyReading from "./Components/PrivacyReading";
+import Profile from "./Components/Profile";
+import UserInformation from "./Components/userInformation";
 
 function App() {
   return (
@@ -43,17 +45,23 @@ function App() {
               element={<PrivacyReading />}
             ></Route>
 
-            <Route
-              path="/addaddress"
-              exact={true}
-              element={<AddAddress />}
-            ></Route>
-
-            <Route
-              path="/addpayment"
-              exact={true}
-              element={<AddPayment />}
-            ></Route>
+            <Route path="/profile" element={<Profile />}>
+              <Route
+                path="/profile/userinformation"
+                exact={true}
+                element={<UserInformation />}
+              ></Route>
+              <Route
+                path="/profile/addaddress"
+                exact={true}
+                element={<AddAddress />}
+              ></Route>
+              <Route
+                path="/profile/addpayment"
+                exact={true}
+                element={<AddPayment />}
+              ></Route>
+            </Route>
 
             <Route path="/search" exact={true} element={<Search />} />
             <Route

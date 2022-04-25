@@ -8,6 +8,7 @@ import AddPaymentReducer from "../Reducers/AddPaymentReducer";
 import ContactUsReducer from "../Reducers/ContactUsReducer";
 import LogInReducer from "../Reducers/LogInReducer";
 import PrivacyPolicyReducer from "../Reducers/PrivacyPolicyReducer";
+import GetUserDetailsReducer from "../Reducers/GetUserDetails";
 import "./index.css";
 
 const store = createStore(
@@ -17,13 +18,14 @@ const store = createStore(
     AddPayment: AddPaymentReducer,
     PrivacyPolicy: PrivacyPolicyReducer,
     ContactUs: ContactUsReducer,
+    UserDetails: GetUserDetailsReducer,
   })
 );
 const Template = () => {
   return (
     <Provider store={store}>
       <NavBar />
-      <div className="container wd-outlet">
+      <div className="container wd-outlet ">
         <Outlet />
       </div>
       <div className="container d-none d-sm-block">
