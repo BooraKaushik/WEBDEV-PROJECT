@@ -6,7 +6,10 @@ import AddressModel from "../Models/AddressModel.js";
 const UserRegistration = (req, res, next) => {
   // 10 here is salt nuber its number of cycles of encryption(salt makes hash unpredictable)
   bcrypt.hash(req.body.password, 10, async (err, encryptedPassword) => {
-    if (err) res.json({ success: false, message: { user: {}, error } });
+    if (err) {
+      res.json({ success: false, message: { user: {}, error } });
+      return;
+    }
     let user = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -83,11 +86,8 @@ const UserDataUpdate = function (req, res, next) {
           user.firstName = req.body.firstName;
           user.lastName = req.body.lastName;
           user.dateOfBirth = req.body.dateOfBirth;
-          user.email = req.body.email;
           user.password = encryptedPassword;
-          user.address = req.body.address;
           user.phone = req.body.phone;
-          user.type = req.body.type;
           user
             .save()
             .then((user) => {
@@ -109,7 +109,10 @@ const login = (req, res, next) => {
   User.findOne({ email: email }).then((user) => {
     if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
-        if (err) res.json({ success: false, message: err });
+        if (err) {
+          res.json({ success: false, message: err });
+          return;
+        }
         if (result) {
           let token = jwt.sign({ name: User.firstName }, "3HD71q2k", {
             expiresIn: "2h",
