@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddAddress from "./Components/AddAddress";
 import AddPayment from "./Components/AddPayment";
-import Card from "./Components/HomePage/Card";
+import Card from "./Components/HomePage/CardItem";
 import LoginComponent from "./Components/LoginComponent";
 import SignUpComponent from "./Components/SignUpComponent";
 import Template from "./Components/Template";
 import Search from "./Components/Search";
 import Details from "./Components/Search/details";
 import LogedIn from "./Components/LogedIn";
+import PrivacyReading from "./Components/PrivacyReading";
 
 function App() {
   return (
@@ -37,10 +38,17 @@ function App() {
               }
             ></Route>
             <Route
+              path="/privacy"
+              exact={true}
+              element={<PrivacyReading />}
+            ></Route>
+
+            <Route
               path="/addaddress"
               exact={true}
               element={<AddAddress />}
             ></Route>
+
             <Route
               path="/addpayment"
               exact={true}
@@ -48,6 +56,12 @@ function App() {
             ></Route>
 
             <Route path="/search" exact={true} element={<Search />} />
+            <Route
+              path="/search/:productName"
+              exact={true}
+              element={<Search />}
+            />
+
             <Route
               path="/details/:product_id"
               exact={true}

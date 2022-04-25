@@ -5,7 +5,9 @@ import Footer from "../Footer";
 import NavBar from "../NavBar";
 import AddAddressReducer from "../Reducers/AddAddressReducer";
 import AddPaymentReducer from "../Reducers/AddPaymentReducer";
+import ContactUsReducer from "../Reducers/ContactUsReducer";
 import LogInReducer from "../Reducers/LogInReducer";
+import PrivacyPolicyReducer from "../Reducers/PrivacyPolicyReducer";
 import "./index.css";
 
 const store = createStore(
@@ -13,6 +15,8 @@ const store = createStore(
     LogIn: LogInReducer,
     AddAddress: AddAddressReducer,
     AddPayment: AddPaymentReducer,
+    PrivacyPolicy: PrivacyPolicyReducer,
+    ContactUs: ContactUsReducer,
   })
 );
 const Template = () => {

@@ -1,20 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { idAdminService, idDealerService } from "../../Services/LoginService";
 import { logoutAction } from "../Actions/Login";
+import "./index.css";
 
 const NavBar = () => {
   const login = useSelector((state) => state.LogIn);
   const dispatch = useDispatch();
   return (
-    <nav
-      className="navbar navbar-expand-sm navbar-dark"
-      style={{ backgroundColor: "#2874f0" }}
-    >
+    <nav className="navbar navbar-expand-sm navbar-dark wd-bg-color">
       <div className="container">
-        <span
-          className="navbar-brand mx-1 mx-md-3 mb-0 h1"
-          style={{ color: "rgba(255, 255, 255, 0.932)" }}
-        >
+        <span className="navbar-brand mx-1 mx-md-3 mb-0 h1 wd-nav-bg-color">
           SARK
         </span>
         <button
@@ -33,41 +29,43 @@ const NavBar = () => {
           className="collapse navbar-collapse ml-auto"
           id="navbarSupportedContent"
         >
-          <ul className="navbar-nav" style={{ margin: "0px 0px 0px auto" }}>
+          <ul className="navbar-nav wd-nav-options">
             <li className="nav-item active mx-3">
-              <Link
-                className="nav-link"
-                style={{ color: "rgba(255, 255, 255, 0.932)" }}
-                to="/"
-              >
+              <Link className="wd-nav-bg-color nav-link" to="/">
                 Home
               </Link>
             </li>
             <li className="nav-item active mx-3">
-              <Link
-                className="nav-link"
-                style={{ color: "rgba(255, 255, 255, 0.932)" }}
-                to="search/"
-              >
+              <Link className="nav-link wd-nav-bg-color" to="search/">
                 Search
               </Link>
             </li>
-            {login.logedIn && (
+            {login.logedIn && !idAdminService() && !idDealerService() && (
               <li className="nav-item active mx-3">
-                <Link
-                  className="nav-link"
-                  style={{ color: "rgba(255, 255, 255, 0.932)" }}
-                  to="/profile"
-                >
-                  <strong> View Profile</strong>
+                <Link className="nav-link wd-nav-bg-color" to="/profile">
+                  View Profile
                 </Link>
               </li>
             )}
+            {login.logedIn && !idAdminService() && idDealerService() && (
+              <li className="nav-item active mx-3">
+                <Link className="nav-link wd-nav-bg-color" to="/profile">
+                  Dealer
+                </Link>
+              </li>
+            )}
+            {login.logedIn && idAdminService() && !idDealerService() && (
+              <li className="nav-item active mx-3">
+                <Link className="nav-link wd-nav-bg-color" to="/profile">
+                  Admin
+                </Link>
+              </li>
+            )}
+
             {login.logedIn ? (
               <li className="nav-item active mx-3">
                 <Link
-                  className="nav-link"
-                  style={{ color: "rgba(255, 255, 255, 0.932)" }}
+                  className="nav-link wd-nav-bg-color"
                   onClick={async () => {
                     logoutAction(dispatch);
                   }}
@@ -79,8 +77,7 @@ const NavBar = () => {
             ) : (
               <li className="nav-item active mx-3">
                 <Link
-                  className="nav-link"
-                  style={{ color: "rgba(255, 255, 255, 0.932)" }}
+                  className="nav-link wd-nav-bg-color"
                   onClick={() => {
                     console.log("CLicked Login Again");
                   }}

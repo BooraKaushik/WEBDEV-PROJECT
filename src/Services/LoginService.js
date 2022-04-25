@@ -17,6 +17,20 @@ export const isloggedinService = () => {
   else return false;
 };
 
+export const idDealerService = () => {
+  if (JSON.parse(localStorage.getItem("LoggedIn")).type === "Dealer") {
+    return true;
+  }
+  return false;
+};
+
+export const idAdminService = () => {
+  if (JSON.parse(localStorage.getItem("LoggedIn")).type === "Admin") {
+    return true;
+  }
+  return false;
+};
+
 export const logOutService = () => {
   localStorage.removeItem("LoggedIn");
   localStorage.removeItem("LoginToken");
