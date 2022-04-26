@@ -1,13 +1,13 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {user_details} from "../Actions/GetUserDetails";
+import {Link} from "react-router-dom";
 
 const UserInformation = () => {
     const user = useSelector((state) => state.UserDetails);
     const dispatch = useDispatch();
 
-    useEffect(()=> user_details(dispatch), []);
-    console.log('user_details',user);
+    useEffect(()=> {user_details(dispatch).catch(console.error)}, []);
 return (
     <>
         <div className="row m-0">
@@ -15,17 +15,17 @@ return (
                 <span className="wd-font-color mt-2" style={{"fontSize":"1.5rem"}}>User Information</span>
             </div>
             <div className="col-3 ">
-                <div className="btn wd-rounded-buttons mt-1 float-end" style={{"background":"lightblue"}} onClick={()=>{return ;}}>Edit</div>
+                <Link to="/profile/editUserInformation"><div className="btn mt-1 float-end" style={{"background":"lightblue"}} >Edit</div></Link>
             </div>
         </div>
         <form>
             <div className="form-group">
-                <label for="firstname">First Name</label>
+                <label htmlFor="firstname">First Name</label>
                 <input type="text" id="firstname"
                        value={`${user.firstName}`} className="form-control" readOnly/>
             </div>
             <div className="form-group">
-                <label for="lastname">Last Name</label>
+                <label htmlFor="lastname">Last Name</label>
                 <input type="text" id="lastname" value={`${user.lastName}`} className="form-control" readOnly/>
             </div>
             <div className="form-group">

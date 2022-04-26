@@ -4,7 +4,6 @@ export const GET_USER_DETAILS = "GET_USER_DETAILS"
 
 export const user_details = async (dispatch) => {
     const user_info = await GetUserDetails();
-    console.log(user_info);
     dispatch({
         type: GET_USER_DETAILS,
         user:user_info,
