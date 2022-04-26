@@ -19,7 +19,7 @@ const SideBar = () => {
         <CDBSidebarContent className="sidebar-content">
           <NavLink
             exact
-            to="/profile/userinformation"
+            to="/profile"
             activeClassName="activeClicked"
             style={{ textDecoration: "none" }}
           >

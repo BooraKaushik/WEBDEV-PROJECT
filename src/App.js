@@ -46,11 +46,7 @@ function App() {
             ></Route>
 
             <Route path="/profile" element={<Profile />}>
-              <Route
-                path="/profile/userinformation"
-                exact={true}
-                element={<UserInformation />}
-              ></Route>
+              <Route index exact={true} element={<UserInformation />}></Route>
               <Route
                 path="/profile/addaddress"
                 exact={true}
