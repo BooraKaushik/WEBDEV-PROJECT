@@ -36,15 +36,9 @@ const Search = () => {
       axios
         .request(options)
         .then(function (response) {
-          console.log(response.data.docs);
-          console.log(response.data.docs);
-          console.log(typeof response.data.docs);
           setProducts(response.data.docs);
-          console.log("Completed setting");
-          console.log(products);
         })
         .catch(function (error) {
-          console.log("Hello error");
           console.error(error);
         });
     }

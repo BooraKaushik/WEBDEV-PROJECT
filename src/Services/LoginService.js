@@ -17,14 +17,14 @@ export const isloggedinService = () => {
   else return false;
 };
 
-export const idDealerService = () => {
+export const isDealerService = () => {
   if (JSON.parse(localStorage.getItem("LoggedIn")).type === "Dealer") {
     return true;
   }
   return false;
 };
 
-export const idAdminService = () => {
+export const isAdminService = () => {
   if (JSON.parse(localStorage.getItem("LoggedIn")).type === "Admin") {
     return true;
   }

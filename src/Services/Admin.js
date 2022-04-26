@@ -2,16 +2,16 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_SARK || "http://localhost:4300/api";
 
-const ADD_PAYMENT_URL = `${API_URL}/add-payment`;
-const REMOVE_PAYMENT_URL = `${API_URL}/remove-payment`;
+const FETCH_ALL_USERS = `${API_URL}/all-users/`;
+const DELETE_USER = `${API_URL}/remove-users/`;
 
-export const addPayment = async (payment) => {
+export const FetchAllUsersService = async () => {
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
-  const data = await axios.put(
-    ADD_PAYMENT_URL,
+  console.log(FETCH_ALL_USERS);
+  const data = await axios.post(
+    FETCH_ALL_USERS,
     {
-      uid: loginInfo._id,
-      payment,
+      id: loginInfo._id,
     },
     {
       headers: {
@@ -19,15 +19,16 @@ export const addPayment = async (payment) => {
       },
     }
   );
-  return data.data.error.length > 0;
+  return data.data;
 };
-export const RemovePayment = async (pid) => {
+
+export const RemoveUserService = async (uid) => {
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
-  const data = await axios.put(
-    REMOVE_PAYMENT_URL,
+  const data = await axios.post(
+    DELETE_USER,
     {
-      uid: loginInfo._id,
-      pid,
+      id: loginInfo._id,
+      delId: uid,
     },
     {
       headers: {
@@ -35,5 +36,6 @@ export const RemovePayment = async (pid) => {
       },
     }
   );
-  return data.data.error.length > 0;
+  console.log(data.data);
+  return data.data;
 };
