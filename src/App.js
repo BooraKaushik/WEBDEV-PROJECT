@@ -11,6 +11,7 @@ import LogedIn from "./Components/LogedIn";
 import PrivacyReading from "./Components/PrivacyReading";
 import Profile from "./Components/Profile";
 import UserInformation from "./Components/userInformation";
+import UpdateUserInformation from "./Components/UpdateUserInformation";
 
 function App() {
   return (
@@ -56,6 +57,11 @@ function App() {
                 path="/profile/addpayment"
                 exact={true}
                 element={<AddPayment />}
+              ></Route>
+              <Route
+                  path="/profile/editUserInformation"
+                  exact={true}
+                  element={<UpdateUserInformation/>}
               ></Route>
             </Route>
 
