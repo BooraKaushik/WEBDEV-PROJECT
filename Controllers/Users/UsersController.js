@@ -161,5 +161,8 @@ const UsersController = (app) => {
       user,
     });
   });
+
+  //Reviews Backend
+  app.post("/api/add-review", authenticate, async (req, res) => {});
 };
 export default UsersController;
