@@ -6,6 +6,7 @@ export const findOneUserUdao = async (uid) =>
     .populate("cart")
     .populate("reviews")
     .populate("paymentInfo")
+    .populate("likes")
     .exec();
 export const createUserUdao = (User) => UserModel.create(User);
 export const deleteUserUdao = (uid) => UserModel.deleteOne({ _id: uid });
@@ -19,6 +20,8 @@ export const addReviewUdao = (uid, reviewId) =>
   UserModel.updateOne({ _id: uid }, { $push: { review: reviewId } });
 export const addPaymentUdao = (uid, reviewId) =>
   UserModel.updateOne({ _id: uid }, { $push: { paymentInfo: reviewId } });
+export const addLikeUdao = (uid, LikeID) =>
+  UserModel.updateOne({ _id: uid }, { $push: { Likes: LikeID } });
 
 export const removeItemCartUdao = (uid, productId) =>
   UserModel.updateOne({ _id: uid }, { $pull: { cart: productId } });
@@ -28,3 +31,5 @@ export const removeReviewUdao = (uid, reviewId) =>
   UserModel.updateOne({ _id: uid }, { $pull: { review: reviewId } });
 export const removePaymentUdao = (uid, reviewId) =>
   UserModel.updateOne({ _id: uid }, { $pull: { paymentInfo: reviewId } });
+export const removeLikeUdao = (uid, LikeID) =>
+  UserModel.updateOne({ _id: uid }, { $pull: { Likes: LikeID } });

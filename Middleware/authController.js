@@ -7,7 +7,7 @@ const UserRegistration = (req, res, next) => {
   // 10 here is salt nuber its number of cycles of encryption(salt makes hash unpredictable)
   bcrypt.hash(req.body.password, 10, async (err, encryptedPassword) => {
     if (err) {
-      res.json({ success: false, message: { user: {}, error } });
+      res.json({ success: false, message: { user: {}, err } });
       return;
     }
     let user = new User({

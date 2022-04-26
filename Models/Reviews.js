@@ -1,0 +1,9 @@
+import mongoose from "mongoose";
+
+const schema = mongoose.Schema({
+  review: { type: String, default: "" },
+  rating: { type: Number, required: true, default: 0 },
+  users: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
+  product: { type: mongoose.Schema.Types.ObjectId },
+});
+export default mongoose.model("Reviews", schema);

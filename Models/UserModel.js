@@ -9,7 +9,9 @@ const schema = mongoose.Schema({
   address: [
     { type: mongoose.Schema.Types.ObjectId, ref: "Addresses", default: [] },
   ],
-  cart: [{ type: mongoose.Schema.Types.ObjectId, default: [] }],
+  cart: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "Products", default: [] },
+  ],
   paymentInfo: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -17,7 +19,10 @@ const schema = mongoose.Schema({
       default: [],
     },
   ],
-  reviews: [{ type: mongoose.Schema.Types.ObjectId, default: [] }],
+  reviews: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "Reviews", default: [] },
+  ],
+  Likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Likes", default: [] }],
   phone: { type: String, required: true },
   type: { type: String, required: true },
 });
