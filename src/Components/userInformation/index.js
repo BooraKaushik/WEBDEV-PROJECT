@@ -7,7 +7,7 @@ const UserInformation = () => {
     const user = useSelector((state) => state.UserDetails);
     const dispatch = useDispatch();
 
-    useEffect(()=> {user_details(dispatch).catch(console.error)}, []);
+    useEffect(()=> {user_details(dispatch).catch(console.error)}, [dispatch]);
 return (
     <>
         <div className="row m-0">
