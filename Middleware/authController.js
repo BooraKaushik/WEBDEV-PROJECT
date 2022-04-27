@@ -4,11 +4,45 @@ import jwt from "jsonwebtoken";
 import AddressModel from "../Models/AddressModel.js";
 //for user creation
 const UserRegistration = (req, res, next) => {
-    // 10 here is salt nuber its number of cycles of encryption(salt makes hash unpredictable)
-    bcrypt.hash(req.body.password, 10, async (err, encryptedPassword) => {
-        if (err) {
-            res.json({success: false, message: {user: {}, error}});
-            return;
+  // 10 here is salt nuber its number of cycles of encryption(salt makes hash unpredictable)
+  bcrypt.hash(req.body.password, 10, async (err, encryptedPassword) => {
+    if (err) {
+      res.json({ success: false, message: { user: {}, err } });
+      return;
+    }
+    let user = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      dateOfBirth: req.body.dateOfBirth,
+      email: req.body.email,
+      password: encryptedPassword,
+      address: [],
+      cart: [],
+      paymentInfo: [],
+      reviews: [],
+      phone: req.body.phone,
+      type: req.body.type,
+    });
+    await AddressModel.findOne(
+      {
+        addressLine: req.body.address.addressLine,
+        addressLine2: req.body.address.addressLine2,
+        city: req.body.address.city,
+        state: req.body.address.state,
+        zipcode: req.body.address.zipcode,
+      },
+      async (err, addr) => {
+        let address;
+        if (addr === null) {
+          address = await AddressModel.create({
+            addressLine: req.body.address.addressLine,
+            addressLine2: req.body.address.addressLine2,
+            city: req.body.address.city,
+            state: req.body.address.state,
+            zipcode: req.body.address.zipcode,
+          });
+        } else {
+          address = addr;
         }
         let user = new User({
             firstName: req.body.firstName,

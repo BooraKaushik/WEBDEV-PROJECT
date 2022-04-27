@@ -43,17 +43,27 @@ const UsersController = (app) => {
   //Defined in Auth Controller updates a user
   app.put("/api/updateusers", auth.UserDataUpdate);
   // gets all the Users
-  app.get("/api/users", async (req, res) => {
-    const allUsers = await findAllUsersUdao();
-    res.json(allUsers);
+  app.post("/api/all-users", authenticate, async (req, res) => {
+    const user = await findOneUserUdao(req.body.id);
+    if (user.type === "Admin") {
+      const allUsers = await (
+        await findAllUsersUdao()
+      ).filter((data) => data.type != "Admin");
+      res.json({ success: true, allUsers });
+      return;
+    }
+    res.json({ success: false, allUsers: {} });
   });
 
   // has to have a by feild and type of by should be admin
-  app.delete("/api/users", async (req, res) => {
-    if (req.body.by.type === "Admin") {
-      const status = await deleteUserUdao(req.body.user._id);
-      res.json({ status });
+  app.post("/api/remove-users", authenticate, async (req, res) => {
+    const user = await findOneUserUdao(req.body.id);
+    if (user.type === "Admin") {
+      const status = await deleteUserUdao(req.body.delId);
+      res.json({ success: true, status });
+      return;
     }
+    res.json({ success: false, status: {} });
   });
 
   //extracts the user by Id for lookingup users when not logged in
@@ -68,7 +78,7 @@ const UsersController = (app) => {
       user: {
         firstName: user.firstName,
         lastName: user.lastName,
-        cart: user.cart,
+        reviews: user.reviews,
         dateOfBirth: user.dateOfBirth,
         email: user.email,
         phone: user.phone,
@@ -151,5 +161,8 @@ const UsersController = (app) => {
       user,
     });
   });
+
+  //Reviews Backend
+  app.post("/api/add-review", authenticate, async (req, res) => {});
 };
 export default UsersController;
