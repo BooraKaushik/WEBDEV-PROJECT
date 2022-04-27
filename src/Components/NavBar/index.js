@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { idAdminService, idDealerService } from "../../Services/LoginService";
+import { isAdminService, isDealerService } from "../../Services/LoginService";
 import { logoutAction } from "../Actions/Login";
 import "./index.css";
 
@@ -40,23 +40,23 @@ const NavBar = () => {
                 Search
               </Link>
             </li>
-            {login.logedIn && !idAdminService() && !idDealerService() && (
+            {login.logedIn && !isAdminService() && !isDealerService() && (
               <li className="nav-item active mx-3">
                 <Link className="nav-link wd-nav-bg-color" to="/profile">
                   View Profile
                 </Link>
               </li>
             )}
-            {login.logedIn && !idAdminService() && idDealerService() && (
+            {login.logedIn && !isAdminService() && isDealerService() && (
               <li className="nav-item active mx-3">
-                <Link className="nav-link wd-nav-bg-color" to="/profile">
+                <Link className="nav-link wd-nav-bg-color" to="/dealer">
                   Dealer
                 </Link>
               </li>
             )}
-            {login.logedIn && idAdminService() && !idDealerService() && (
+            {login.logedIn && isAdminService() && !isDealerService() && (
               <li className="nav-item active mx-3">
-                <Link className="nav-link wd-nav-bg-color" to="/profile">
+                <Link className="nav-link wd-nav-bg-color" to="/admin">
                   Admin
                 </Link>
               </li>
@@ -78,9 +78,7 @@ const NavBar = () => {
               <li className="nav-item active mx-3">
                 <Link
                   className="nav-link wd-nav-bg-color"
-                  onClick={() => {
-                    console.log("CLicked Login Again");
-                  }}
+                  onClick={() => {}}
                   to="/login"
                 >
                   <strong> LogIn</strong>

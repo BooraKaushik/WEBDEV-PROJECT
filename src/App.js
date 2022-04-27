@@ -12,6 +12,9 @@ import PrivacyReading from "./Components/PrivacyReading";
 import Profile from "./Components/Profile";
 import UserInformation from "./Components/userInformation";
 import UpdateUserInformation from "./Components/UpdateUserInformation";
+import Admin from "./Components/Admin";
+import SecureLogin from "./Components/SecureLogin";
+import SecureAdminLogin from "./Components/SecureAdminLogin";
 
 function App() {
   return (
@@ -45,23 +48,51 @@ function App() {
               exact={true}
               element={<PrivacyReading />}
             ></Route>
-
+            <Route
+              path="/admin"
+              exact={true}
+              element={
+                <SecureAdminLogin>
+                  <Admin />
+                </SecureAdminLogin>
+              }
+            />
             <Route path="/profile" element={<Profile />}>
-              <Route index exact={true} element={<UserInformation />}></Route>
+              <Route
+                index
+                exact={true}
+                element={
+                  <SecureLogin>
+                    <UserInformation />
+                  </SecureLogin>
+                }
+              ></Route>
               <Route
                 path="/profile/addaddress"
                 exact={true}
-                element={<AddAddress />}
+                element={
+                  <SecureLogin>
+                    <AddAddress />
+                  </SecureLogin>
+                }
               ></Route>
               <Route
                 path="/profile/addpayment"
                 exact={true}
-                element={<AddPayment />}
+                element={
+                  <SecureLogin>
+                    <AddPayment />
+                  </SecureLogin>
+                }
               ></Route>
               <Route
-                  path="/profile/editUserInformation"
-                  exact={true}
-                  element={<UpdateUserInformation/>}
+                path="/profile/editUserInformation"
+                exact={true}
+                element={
+                  <SecureLogin>
+                    <UpdateUserInformation />
+                  </SecureLogin>
+                }
               ></Route>
             </Route>
 

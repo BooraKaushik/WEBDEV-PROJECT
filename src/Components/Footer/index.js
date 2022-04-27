@@ -9,7 +9,6 @@ const Footer = () => {
   const privacy = useSelector((state) => state.PrivacyPolicy);
   const contactUs = useSelector((state) => state.ContactUs);
   const dispatch = useDispatch();
-  console.log(privacy);
   return (
     <>
       <div className={`${!contactUs.display ? "d-none" : ""}`}>
