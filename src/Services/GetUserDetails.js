@@ -6,9 +6,6 @@ const GET_USER_DETAILS_URL =`${API_URL}/logged-user`;
 
 export const GetUserDetails=async()=>{
     const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
-    console.log({
-        id: loginInfo._id
-    });
     const data = await axios.post(
         GET_USER_DETAILS_URL,
         {
@@ -22,3 +19,4 @@ export const GetUserDetails=async()=>{
     );
     return data.data.user;
 }
+
