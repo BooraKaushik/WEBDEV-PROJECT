@@ -12,6 +12,7 @@ import {
 } from "../../DAO/PaymentDao.js";
 import {
   addAddressUdao,
+  addReviewUdao,
   addPaymentUdao,
   deleteUserUdao,
   findAllUsersUdao,
@@ -19,6 +20,12 @@ import {
   removeAddressUdao,
   removePaymentUdao,
 } from "../../DAO/UserDao.js";
+import {
+  updateReviewPdao,
+  findOneProductPdao,
+  createProductPdao,
+} from "../../DAO/ProductsDao.js";
+import { CreateReviewRdao } from "../../DAO/reviewDao.js";
 import auth from "../../Middleware/authController.js";
 import authenticate from "../../Middleware/authenticate.js";
 
@@ -163,6 +170,27 @@ const UsersController = (app) => {
   });
 
   //Reviews Backend
-  app.post("/api/add-review", authenticate, async (req, res) => {});
+  app.post("/api/add-review", authenticate, async (req, res) => {
+    const user = await findOneUserUdao(req.body.id);
+    if (user === null) {
+      res.json({ success: false, message: "user Not found" });
+      return;
+    }
+    const data = await CreateReviewRdao({
+      review: req.body.review,
+      rating: req.body.rating,
+      user: req.body.id,
+      product: req.body.pid,
+    });
+    await addReviewUdao(req.body.id, data._id);
+    await updateReviewPdao(data.product, data._id);
+    res.json({ success: true, message: "record created" });
+  });
+
+  //Testing purpose to add products ****
+  app.post("/api/prod-add", async (req, res) => {
+    await createProductPdao(req.body);
+    res.sendStatus(200);
+  });
 };
 export default UsersController;
