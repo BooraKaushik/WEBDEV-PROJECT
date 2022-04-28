@@ -5,6 +5,7 @@ export const findOneUserUdao = async (uid) =>
     .populate("address")
     .populate("paymentInfo")
     .populate("likes")
+    .populate("likes.product")
     .populate("cart")
     .populate("reviews")
     .exec();
