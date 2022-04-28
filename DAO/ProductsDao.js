@@ -1,11 +1,8 @@
 import ProductsModel from "../Models/ProductsModel.js";
 
-export const findAllProductPdao = () => {
-  ProductsModel.find({});
-};
-export const findOneProductPdao = (id) => {
-  ProductsModel.find({ _id: id });
-};
+export const findAllProductPdao = () => ProductsModel.find({});
+export const findOneProductPdao = (id) =>
+  ProductsModel.findOne({ _id: id }).populate("likes").exec();
 export const createProductPdao = (id) => {
   ProductsModel.create(id);
 };

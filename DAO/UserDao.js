@@ -21,7 +21,7 @@ export const addReviewUdao = (uid, reviewId) =>
 export const addPaymentUdao = (uid, reviewId) =>
   UserModel.updateOne({ _id: uid }, { $push: { paymentInfo: reviewId } });
 export const addLikeUdao = (uid, LikeID) =>
-  UserModel.updateOne({ _id: uid }, { $push: { Likes: LikeID } });
+  UserModel.updateOne({ _id: uid }, { $push: { likes: LikeID } });
 
 export const removeItemCartUdao = (uid, productId) =>
   UserModel.updateOne({ _id: uid }, { $pull: { cart: productId } });
@@ -32,4 +32,4 @@ export const removeReviewUdao = (uid, reviewId) =>
 export const removePaymentUdao = (uid, reviewId) =>
   UserModel.updateOne({ _id: uid }, { $pull: { paymentInfo: reviewId } });
 export const removeLikeUdao = (uid, LikeID) =>
-  UserModel.updateOne({ _id: uid }, { $pull: { Likes: LikeID } });
+  UserModel.updateOne({ _id: uid }, { $pull: { likes: LikeID } });

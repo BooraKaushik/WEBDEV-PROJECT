@@ -19,13 +19,28 @@ import {
   findOneUserUdao,
   removeAddressUdao,
   removePaymentUdao,
+  removeReviewUdao,
+  addLikeUdao,
+  removeLikeUdao,
 } from "../../DAO/UserDao.js";
 import {
   updateReviewPdao,
-  findOneProductPdao,
+  removeReviewPdao,
   createProductPdao,
+  updateLikePdao,
+  removeLikePdao,
+  findOneProductPdao,
 } from "../../DAO/ProductsDao.js";
-import { CreateReviewRdao } from "../../DAO/reviewDao.js";
+import {
+  CreateReviewRdao,
+  findOneReviewsRdao,
+  deleteReviewsRdao,
+} from "../../DAO/reviewDao.js";
+import {
+  createLikeLdao,
+  removeLikeLdao,
+  findOneLikeLdao,
+} from "../../DAO/LikesDao.js";
 import auth from "../../Middleware/authController.js";
 import authenticate from "../../Middleware/authenticate.js";
 
@@ -185,6 +200,54 @@ const UsersController = (app) => {
     await addReviewUdao(req.body.id, data._id);
     await updateReviewPdao(data.product, data._id);
     res.json({ success: true, message: "record created" });
+  });
+
+  //Reviews Remove  Backend
+  app.post("/api/remove-review", authenticate, async (req, res) => {
+    const data = await findOneReviewsRdao(req.body.id);
+    await removeReviewUdao(data.user, req.body.id);
+    await removeReviewPdao(data.product, req.body.id);
+    await deleteReviewsRdao(req.body.id);
+    await res.json({ success: true, message: "record removed" });
+  });
+
+  //Likes Backend
+  app.post("/api/add-like", authenticate, async (req, res) => {
+    const user = await findOneUserUdao(req.body.id);
+    if (user === null) {
+      res.json({ success: false, message: "user Not found" });
+      return;
+    }
+    const data = await createLikeLdao(req.body.id, req.body.productId);
+    await addLikeUdao(req.body.id, data._id);
+    await updateLikePdao(data.product, data._id);
+    res.json({ success: true, message: "Like created" });
+  });
+
+  //Dislikes Backend
+  app.post("/api/remove-like", authenticate, async (req, res) => {
+    const user = await findOneUserUdao(req.body.id);
+    if (user === null) {
+      res.json({ success: false, message: "user Not found" });
+      return;
+    }
+    const data = await findOneLikeLdao(req.body.id, req.body.productId);
+    await removeLikeLdao(req.body.id, req.body.productId);
+    await removeLikeUdao(req.body.id, data._id);
+    await removeLikePdao(data.product, data._id);
+    res.json({ success: true, message: "Like Removed" });
+  });
+
+  //liked Backend
+  app.post("/api/liked", authenticate, async (req, res) => {
+    const user = await findOneUserUdao(req.body.id);
+    if (user === null) {
+      res.json({ success: false, message: "user Not found" });
+      return;
+    }
+    const data = await findOneProductPdao(req.body.productId);
+    const out = data.likes.filter((e) => e.users == req.body.id);
+    res.json({ success: true, liked: out.length > 0 });
   });
 
   //Testing purpose to add products ****
