@@ -6,6 +6,9 @@ export const findOneProductPdao = (id) =>
 export const createProductPdao = (id) => {
   ProductsModel.create(id);
 };
+export const deleteProductPdao = (id) => {
+  ProductsModel.deleteOne({ _id: id });
+};
 
 export const updateLikePdao = (aid, lid) =>
   ProductsModel.updateOne({ _id: aid }, { $push: { likes: lid } });

@@ -5,6 +5,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import UsersController from "./Controllers/Users/UsersController.js";
 import AddressController from "./Controllers/Address/AddressController.js";
+import ProductsController from "./Controllers/Products/ProductsController.js";
 
 const app = express();
 const port = 4300;
@@ -15,6 +16,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 UsersController(app);
 AddressController(app);
+ProductsController(app);
 app.use(express.static("static"));
 app.use(morgan("dev"));
 app.use((req, res) => {
