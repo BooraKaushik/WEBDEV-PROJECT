@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SignupAction from "../Actions/Signup";
 import "./index.css";
 
@@ -73,6 +73,7 @@ const SignUpComponent = () => {
     },
     phone: "",
     type: "Customer",
+    agreed: false,
   });
   const [errors, updateErrors] = useState({});
   const [serverMessage, setServerMessage] = useState({ error: false, msg: "" });
@@ -160,6 +161,9 @@ const SignUpComponent = () => {
       errors.phone = "Phone Number is Required";
     } else if (!regexpPhone.test(value.phone)) {
       errors.phone = "Phone Number is invalid";
+    }
+    if (!value.agreed) {
+      errors.agreed = "Please agree to proceed";
     }
     return errors;
   };
@@ -435,6 +439,21 @@ const SignUpComponent = () => {
           <label className="form-check-label" htmlFor="admin">
             Admin
           </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            name="agreed"
+            type="checkbox"
+            id="flexCheckDefault"
+            onChange={(event) => putData(event)}
+            checked={data.agreed}
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            I agree to all the terms and conditions{" "}
+            <Link to="/privacy">Privacy policy information</Link>
+          </label>
+          <p className="text-danger">{errors.agreed ? errors.agreed : ""}</p>
         </div>
         <div>
           <button
