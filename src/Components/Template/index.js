@@ -10,6 +10,7 @@ import LogInReducer from "../Reducers/LogInReducer";
 import PrivacyPolicyReducer from "../Reducers/PrivacyPolicyReducer";
 import GetUserDetailsReducer from "../Reducers/GetUserDetails";
 import "./index.css";
+import AddProductReducer from "../Reducers/ProductsReducer";
 
 const store = createStore(
   combineReducers({
@@ -19,6 +20,7 @@ const store = createStore(
     PrivacyPolicy: PrivacyPolicyReducer,
     ContactUs: ContactUsReducer,
     UserDetails: GetUserDetailsReducer,
+    products: AddProductReducer,
   })
 );
 const Template = () => {

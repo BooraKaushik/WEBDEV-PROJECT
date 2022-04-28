@@ -2,17 +2,34 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_SARK || "http://localhost:4300/api";
 
-const ADD_ADDRESS_URL = `${API_URL}/add-address`;
-const REMOVE_ADDRESS_URL = `${API_URL}/remove-address`;
-const LOGIN_USER_INFO = `${API_URL}/logged-user`;
+const ADD_PRODUCT_URL = `${API_URL}/add-product`;
+const REMOVE_PRODUCT_URL = `${API_URL}/remove-product`;
+const GET_PRODUCTS_URL = `${API_URL}/products`;
 
-export const addAddress = async (address) => {
+export const AddProduct = async (product) => {
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
-  const data = await axios.put(
-    ADD_ADDRESS_URL,
+  const data = await axios.post(
+    ADD_PRODUCT_URL,
     {
       uid: loginInfo._id,
-      address,
+      product,
+    },
+    {
+      headers: {
+        authorization: localStorage.getItem("LoginToken"),
+      },
+    }
+  );
+  console.log(data.data);
+  return data.data.error.length > 0;
+};
+export const RemoveProduct = async (pid) => {
+  const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
+  const data = await axios.put(
+    REMOVE_PRODUCT_URL,
+    {
+      uid: loginInfo._id,
+      pid,
     },
     {
       headers: {
@@ -22,13 +39,13 @@ export const addAddress = async (address) => {
   );
   return data.data.error.length > 0;
 };
-export const RemoveAddress = async (aid) => {
+
+export const GetProducts = async () => {
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
   const data = await axios.put(
-    REMOVE_ADDRESS_URL,
+    GET_PRODUCTS_URL,
     {
       uid: loginInfo._id,
-      aid,
     },
     {
       headers: {
@@ -36,20 +53,5 @@ export const RemoveAddress = async (aid) => {
       },
     }
   );
-  return data.data.error.length > 0;
-};
-
-export const getUserInfo = async () => {
-  const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
-  const loginUserData = await axios.post(
-    LOGIN_USER_INFO,
-    { id: loginInfo._id },
-    {
-      headers: {
-        authorization: localStorage.getItem("LoginToken"),
-      },
-    }
-  );
-  console.log(loginUserData.data);
-  return loginUserData.data;
+  return data.data.products;
 };

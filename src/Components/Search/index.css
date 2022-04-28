@@ -2,17 +2,17 @@
     margin-left: 12px;
 }
 
-.wd-bg-image {
-    background-image: url("../Images/search_background.jpeg");
-    background-color: #cccccc;
-    height: 600px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-
+.wd-bg-transparent {
+    background-color: rgba(194, 227, 227, 0.274);
 }
 
-.wd-bg-transparent {
-    background-color: rgba(76, 120, 120, 0.4)
+.wd-bg-image {
+
+    background-image: url("../Images/search_background.jpeg");
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
 }

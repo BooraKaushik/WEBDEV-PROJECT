@@ -7,7 +7,6 @@ const Search = () => {
   const [products, setProducts] = useState([]);
   const { productName } = useParams();
   const productRef = useRef();
-  // productRef.current.value ||
   var searchString = "";
   const searchProducts = () => {
     if (productName !== undefined) {
@@ -15,7 +14,6 @@ const Search = () => {
     } else {
       searchString = searchString = productRef.current.value;
     }
-    // setProducts(temp_products.docs);
     if (searchString !== "") {
       const options = {
         method: "GET",
@@ -70,7 +68,10 @@ const Search = () => {
         </div>
         <ul className="list-group">
           {products.map((product) => (
-            <li className="list-group-item wd-bg-transparent">
+            <li
+              className="list-group-item"
+              style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
+            >
               <Link to={`/details/${product.product_id}`}>
                 <div className="row">
                   <div className="col-2">
@@ -87,9 +88,6 @@ const Search = () => {
             </li>
           ))}
         </ul>
-        {/*<pre>*/}
-        {/*{JSON.stringify(products, null, 2)}*/}
-        {/*    </pre>*/}
       </div>
     </div>
   );
