@@ -16,3 +16,16 @@
 .wd-bg-transparent {
     background-color: rgba(76, 120, 120, 0.4)
 }
+
+wd-button-star {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.on {
+    color: #000;
+}
+.off {
+    color: #ccc;
+}

@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import "./index.css";
 
 const Search = () => {
   const [products, setProducts] = useState([]);
   const { productName } = useParams();
+  const Navigate = useNavigate();
   const productRef = useRef();
   // productRef.current.value ||
   var searchString = "";
@@ -13,7 +14,7 @@ const Search = () => {
     if (productName !== undefined) {
       searchString = productName;
     } else {
-      searchString = searchString = productRef.current.value;
+      searchString = productRef.current.value;
     }
     // setProducts(temp_products.docs);
     if (searchString !== "") {
@@ -41,7 +42,9 @@ const Search = () => {
         .catch(function (error) {
           console.error(error);
         });
+
     }
+    Navigate(`/search/${searchString}`);
   };
 
   useEffect(() => {

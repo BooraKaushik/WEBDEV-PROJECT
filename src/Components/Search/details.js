@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import StarRating from "./StarRating";
+import {useDispatch, useSelector} from "react-redux";
+import {isDealerService} from "../../Services/LoginService";
+import "./index.css";
+
 
 const Details = () => {
   const [productTitle, setproductTitle] = useState([]);
@@ -8,7 +14,13 @@ const Details = () => {
   const [priceInfo, setPriceInfo] = useState([]);
   const [productAllDetails, setProductAllDetails] = useState([]);
   const { product_id } = useParams();
+  const dispatch = useDispatch();
+  const login = useSelector((state) => state.LogIn);
 
+    const addToCart = () => {
+      console.log("Add to cart called");
+      console.log(productAllDetails);
+  }
   const productDetails = () => {
     const options = {
       method: "GET",
@@ -42,7 +54,12 @@ const Details = () => {
       <br></br>
       <div>
         <h1>{productTitle}</h1>
-        <h3>Product Id : {product_id}</h3>
+          <div className="row">
+              <h3 className="col">Product Id : {product_id}</h3>
+              {login.logedIn && isDealerService() &&
+                <button className="col-2 btn-primary float-end rounded" onClick={addToCart}>Add Product</button>
+              }
+          </div>
 
         <img
           src={productAllDetails.product_main_image_url}
@@ -80,7 +97,23 @@ const Details = () => {
                 </div>
               </div>
             </li>
+
+
           ))}
+          <li className="list-group-item">
+              <div className="row">
+                <div className="col-3 col-sm-2">
+                      <span>
+                          <b>Trusted User Rating</b>
+                      </span>{" "}
+                  :
+                </div>
+                <div className="col-9 col-sm-10">
+                  <span><StarRating/></span>
+                </div>
+              </div>
+
+          </li>
           {/*{Object.keys(productAllDetails.price_information]).map(prod =>*/}
           {/*    <li className="list-group-item">*/}
           {/*        <div className="row">*/}
