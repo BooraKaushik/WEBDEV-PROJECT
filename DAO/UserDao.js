@@ -4,10 +4,9 @@ export const findOneUserUdao = async (uid) =>
   await UserModel.findOne({ _id: uid })
     .populate("address")
     .populate("paymentInfo")
-    .populate("likes")
-    .populate("likes.product")
+    .populate({ path: "likes", populate: "product" })
     .populate("cart")
-    .populate("reviews")
+    .populate({ path: "reviews", populate: "product" })
     .exec();
 export const createUserUdao = (User) => UserModel.create(User);
 export const deleteUserUdao = (uid) => UserModel.deleteOne({ _id: uid });
