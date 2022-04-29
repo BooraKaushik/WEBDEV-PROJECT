@@ -53,5 +53,6 @@ export const GetProducts = async () => {
       },
     }
   );
+  console.log(data.data);
   return data.data.products;
 };

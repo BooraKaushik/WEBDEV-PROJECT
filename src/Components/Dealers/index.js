@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { getProductsAction } from "../Actions/AddProduct";
 import { loginAction } from "../Actions/Login";
 import "./login.css";
 const Dealers = () => {
@@ -20,6 +21,7 @@ const Dealers = () => {
   const navigate = useNavigate();
   const [errors, updateErrors] = useState({});
   const [valid, setValid] = useState(false);
+  const [products, setProducts] = useState({});
 
   const putData = (event) => {
     const { name, value } = event.target;
@@ -32,6 +34,7 @@ const Dealers = () => {
   };
 
   useEffect(() => {
+    getProductsAction().then((data) => setProducts(data));
     if (Object.keys(errors).length === 0 && valid) {
       loginAction(dispatch, data).then((data) => {
         if (data.success) {
@@ -213,6 +216,7 @@ const Dealers = () => {
           </button>
         </div>
       </form>
+      {JSON.stringify(products)}
     </div>
   );
 };

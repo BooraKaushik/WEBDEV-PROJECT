@@ -14,11 +14,11 @@ export const RemoveProductAction = async (aid) => {
   const info = await RemoveProduct(aid);
   return info;
 };
-export const getProductsAction = async (dispatch) => {
+export const getProductsAction = async () => {
   const info = await GetProducts();
-  dispatch({
-    type: ADD_PRODUCT,
-    products: info, //Todo: add prods from backend
-  });
-  return info.user.address;
+  // dispatch({
+  //   type: ADD_PRODUCT,
+  //   products: info, //Todo: add prods from backend
+  // });
+  return info;
 };
