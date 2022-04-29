@@ -10,6 +10,7 @@ import LogInReducer from "../Reducers/LogInReducer";
 import PrivacyPolicyReducer from "../Reducers/PrivacyPolicyReducer";
 import GetUserDetailsReducer from "../Reducers/GetUserDetails";
 import "./index.css";
+import GetUserPublicDetailsReducer from "../Reducers/GetUserPublicDetails";
 import AddProductReducer from "../Reducers/ProductsReducer";
 
 const store = createStore(
@@ -20,6 +21,7 @@ const store = createStore(
     PrivacyPolicy: PrivacyPolicyReducer,
     ContactUs: ContactUsReducer,
     UserDetails: GetUserDetailsReducer,
+    UserPublicDetails: GetUserPublicDetailsReducer,
     products: AddProductReducer,
   })
 );

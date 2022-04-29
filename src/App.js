@@ -15,6 +15,7 @@ import UpdateUserInformation from "./Components/UpdateUserInformation";
 import Admin from "./Components/Admin";
 import SecureLogin from "./Components/SecureLogin";
 import SecureAdminLogin from "./Components/SecureAdminLogin";
+import UserPublicInformation from "./Components/UserPublicInformation";
 import SecureDealerLogin from "./Components/SecureDealerLogin";
 import Dealers from "./Components/Dealers";
 
@@ -36,6 +37,9 @@ function App() {
                 </LogedIn>
               }
             ></Route>
+            <Route path="/users/:userID" exact={true} element={
+              <UserPublicInformation></UserPublicInformation>
+            }></Route>
             <Route
               path="/register"
               exact={true}
