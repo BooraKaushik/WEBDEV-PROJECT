@@ -16,6 +16,8 @@ import Admin from "./Components/Admin";
 import SecureLogin from "./Components/SecureLogin";
 import SecureAdminLogin from "./Components/SecureAdminLogin";
 import UserPublicInformation from "./Components/UserPublicInformation";
+import SecureDealerLogin from "./Components/SecureDealerLogin";
+import Dealers from "./Components/Dealers";
 
 function App() {
   return (
@@ -59,6 +61,15 @@ function App() {
                 <SecureAdminLogin>
                   <Admin />
                 </SecureAdminLogin>
+              }
+            />
+            <Route
+              path="/dealer"
+              exact={true}
+              element={
+                <SecureDealerLogin>
+                  <Dealers />
+                </SecureDealerLogin>
               }
             />
             <Route path="/profile" element={<Profile />}>
