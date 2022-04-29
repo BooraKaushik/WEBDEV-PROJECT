@@ -11,7 +11,7 @@ export const AddProduct = async (product) => {
   const data = await axios.post(
     ADD_PRODUCT_URL,
     {
-      uid: loginInfo._id,
+      id: loginInfo._id,
       product,
     },
     {
@@ -28,7 +28,7 @@ export const RemoveProduct = async (pid) => {
   const data = await axios.put(
     REMOVE_PRODUCT_URL,
     {
-      uid: loginInfo._id,
+      id: loginInfo._id,
       pid,
     },
     {
@@ -42,10 +42,10 @@ export const RemoveProduct = async (pid) => {
 
 export const GetProducts = async () => {
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
-  const data = await axios.put(
+  const data = await axios.post(
     GET_PRODUCTS_URL,
     {
-      uid: loginInfo._id,
+      id: loginInfo._id,
     },
     {
       headers: {
@@ -53,6 +53,6 @@ export const GetProducts = async () => {
       },
     }
   );
-  console.log(data.data);
+  console.log("jshdfncusi", data.data);
   return data.data.products;
 };

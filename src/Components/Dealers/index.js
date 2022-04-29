@@ -217,6 +217,9 @@ const Dealers = () => {
         </div>
       </form>
       {JSON.stringify(products)}
+      <ul>
+        <li></li>
+      </ul>
     </div>
   );
 };

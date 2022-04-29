@@ -16,9 +16,5 @@ export const RemoveProductAction = async (aid) => {
 };
 export const getProductsAction = async () => {
   const info = await GetProducts();
-  // dispatch({
-  //   type: ADD_PRODUCT,
-  //   products: info, //Todo: add prods from backend
-  // });
   return info;
 };
