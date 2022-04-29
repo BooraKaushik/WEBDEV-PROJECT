@@ -50,6 +50,5 @@ export const getUserInfo = async () => {
       },
     }
   );
-  console.log(loginUserData.data);
   return loginUserData.data;
 };

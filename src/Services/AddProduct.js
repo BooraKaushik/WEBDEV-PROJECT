@@ -20,12 +20,11 @@ export const AddProduct = async (product) => {
       },
     }
   );
-  console.log(data.data);
-  return data.data.error.length > 0;
+  return data.data;
 };
 export const RemoveProduct = async (pid) => {
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
-  const data = await axios.put(
+  const data = await axios.post(
     REMOVE_PRODUCT_URL,
     {
       id: loginInfo._id,
@@ -37,7 +36,8 @@ export const RemoveProduct = async (pid) => {
       },
     }
   );
-  return data.data.error.length > 0;
+  console.log(data.data);
+  return data.data;
 };
 
 export const GetProducts = async () => {
@@ -53,6 +53,5 @@ export const GetProducts = async () => {
       },
     }
   );
-  console.log("jshdfncusi", data.data);
   return data.data.products;
 };

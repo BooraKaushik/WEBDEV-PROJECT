@@ -37,9 +37,11 @@ function App() {
                 </LogedIn>
               }
             ></Route>
-            <Route path="/users/:userID" exact={true} element={
-              <UserPublicInformation></UserPublicInformation>
-            }></Route>
+            <Route
+              path="/profile/:userID"
+              exact={true}
+              element={<UserPublicInformation />}
+            ></Route>
             <Route
               path="/register"
               exact={true}

@@ -7,7 +7,6 @@ const DELETE_USER = `${API_URL}/remove-users/`;
 
 export const FetchAllUsersService = async () => {
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
-  console.log(FETCH_ALL_USERS);
   const data = await axios.post(
     FETCH_ALL_USERS,
     {
@@ -36,6 +35,5 @@ export const RemoveUserService = async (uid) => {
       },
     }
   );
-  console.log(data.data);
   return data.data;
 };

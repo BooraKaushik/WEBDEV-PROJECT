@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./index.css";
 
@@ -28,7 +28,7 @@ const Search = () => {
         headers: {
           "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "cce41dfademshe488954231b2a09p1b29e0jsne66353d8d037",
+            "b3efac4ebcmsh09dea2bbba700d6p1b5d89jsnbf7267d877bc",
         },
       };
 
@@ -40,13 +40,13 @@ const Search = () => {
         .catch(function (error) {
           console.error(error);
         });
-
     }
     Navigate(`/search/${searchString}`);
   };
 
   useEffect(() => {
     searchProducts();
+    /* eslint-disable-next-line */
   }, []);
 
   return (

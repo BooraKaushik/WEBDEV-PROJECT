@@ -1,4 +1,4 @@
-.wd-login-container{
+.wd-dealer-container{
     width:80%;
     min-height: 50%;
     border-radius: 24px;
@@ -9,4 +9,7 @@
 }
 .wd-form-login-text{
     text-align: center;
+}
+.wd-card{
+    width: 18 rem;
 }
