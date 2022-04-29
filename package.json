@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/BooraKaushik/WEB-DEV-Backend.git"
+    "url": "git+https://github.com/BooraKaushik/WEB-DEV-Backend.git"
   },
   "keywords": [
     "Node",

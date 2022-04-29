@@ -5,3 +5,5 @@ export const removeLikeLdao = (uid, pid) =>
   LikesModel.deleteOne({ users: uid, product: pid });
 export const findOneLikeLdao = (uid, pid) =>
   LikesModel.findOne({ users: uid, product: pid });
+
+export const findAllLikes = () => LikesModel.find().populate("users").populate("product").exec();

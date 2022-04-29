@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import UsersController from "./Controllers/Users/UsersController.js";
 import AddressController from "./Controllers/Address/AddressController.js";
 import ProductsController from "./Controllers/Products/ProductsController.js";
+import LikesController from "./Controllers/Likes/LikesController.js";
 
 const app = express();
 const port = 4300;
@@ -17,6 +18,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 UsersController(app);
 AddressController(app);
 ProductsController(app);
+LikesController(app);
 app.use(express.static("static"));
 app.use(morgan("dev"));
 app.use((req, res) => {
