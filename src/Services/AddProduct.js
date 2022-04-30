@@ -7,8 +7,6 @@ const REMOVE_PRODUCT_URL = `${API_URL}/remove-product`;
 const GET_PRODUCTS_URL = `${API_URL}/products`;
 
 export const AddProduct = async (product) => {
-  console.log("In Action");
-  console.log(product);
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
   const data = await axios.post(
     ADD_PRODUCT_URL,
@@ -38,7 +36,6 @@ export const RemoveProduct = async (pid) => {
       },
     }
   );
-  console.log(data.data);
   return data.data;
 };
 

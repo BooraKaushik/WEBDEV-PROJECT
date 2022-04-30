@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import StarRating from "./StarRating";
 import { useSelector } from "react-redux";
 import { isDealerService } from "../../Services/LoginService";
@@ -9,10 +9,12 @@ import { AddProductAction } from "../Actions/AddProduct";
 import "./index.css";
 
 const Details = () => {
+  const [start, setStart] = useState(true);
   const [productTitle, setproductTitle] = useState([]);
   const [product, setProduct] = useState([]);
   const [priceInfo, setPriceInfo] = useState([]);
   const [productAllDetails, setProductAllDetails] = useState([]);
+  const navigate = useNavigate();
   const [data, setData] = useState({
     name: "",
     imageUrl: "",
@@ -29,10 +31,8 @@ const Details = () => {
   const { product_id } = useParams();
   const login = useSelector((state) => state.LogIn);
 
-  const addToCart = () => {
-    console.log(productAllDetails);
-
-    setData({
+  const addToCart = async () => {
+    await setData({
       ...data,
       name: productTitle,
       asin: product_id,
@@ -48,10 +48,6 @@ const Details = () => {
         productAllDetails.price_information["discount_percentage"]
       ),
     });
-    console.log("New vals");
-    console.log(product);
-    console.log(data);
-    AddProductAction(data);
   };
   const productDetails = () => {
     const options = {
@@ -78,11 +74,20 @@ const Details = () => {
   };
 
   useEffect(() => {
-    setData([]);
-    productDetails();
+    if (start) {
+      productDetails();
+      setStart(false);
+    } else {
+      console.log(data);
+      AddProductAction(data).then((data) => {
+        if (data.success) {
+          navigate(`/details_db/${data.products._id}`);
+        }
+      });
+    }
 
     /* eslint-disable-next-line */
-  }, []);
+  }, [data]);
 
   return (
     <div>
@@ -114,13 +119,13 @@ const Details = () => {
           {Object.keys(product).map((prod) => (
             <li className="list-group-item">
               <div className="row">
-                <div className="col-3 col-sm-2">
+                <div className="col-md-4 ">
                   <span>
-                    <b>{prod}</b>
+                    <b>{prod.replaceAll("_", " ").trim()}</b>
                   </span>{" "}
                   :
                 </div>
-                <div className="col-9 col-sm-10">
+                <div className="col-md-8 ">
                   <span>{product[prod]}</span>
                 </div>
               </div>
@@ -129,13 +134,13 @@ const Details = () => {
           {Object.keys(priceInfo).map((prod) => (
             <li className="list-group-item">
               <div className="row">
-                <div className="col-3 col-sm-2">
+                <div className="col-md-4">
                   <span>
-                    <b>{prod}</b>
+                    <b>{prod.replaceAll("_", " ").trim()}</b>
                   </span>{" "}
                   :
                 </div>
-                <div className="col-9 col-sm-10">
+                <div className="col-md-8">
                   <span>{priceInfo[prod]}</span>
                 </div>
               </div>
@@ -143,32 +148,19 @@ const Details = () => {
           ))}
           <li className="list-group-item">
             <div className="row">
-              <div className="col-3 col-sm-2">
+              <div className="col-md-4">
                 <span>
                   <b>Trusted User Rating</b>
                 </span>{" "}
                 :
               </div>
-              <div className="col-9 col-sm-10">
+              <div className="col-md-8">
                 <span>
                   <StarRating />
                 </span>
               </div>
             </div>
           </li>
-          {/*{Object.keys(productAllDetails.price_information]).map(prod =>*/}
-          {/*    <li className="list-group-item">*/}
-          {/*        <div className="row">*/}
-          {/*            <div className="col-3 col-sm-2">*/}
-          {/*                <span><b>{prod}</b></span> :*/}
-          {/*            </div>*/}
-          {/*            <div className="col-9 col-sm-10">*/}
-          {/*                /!*<span>{productAllDetails[priceInfo][prod]}</span>*!/*/}
-          {/*            </div>*/}
-          {/*        </div>*/}
-
-          {/*    </li>*/}
-          {/*)}*/}
         </ul>
       </div>
     </div>

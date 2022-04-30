@@ -34,9 +34,6 @@ const LogOutLikes = () => {
   const Card = ({ p }) => {
     return (
       <div style={{ textAlign: "center", margin: "20px" }}>
-        {console.log("rvnsuonuovneoucan")}
-        {console.log(p.product.name)}
-
         <img
           className="multi-image"
           src={p.product.imgUrl}
@@ -109,7 +106,6 @@ const LogOutLikes = () => {
 
   return (
     <>
-      {console.log("checking", likes)}
       <Slider {...properties}>
         {likes?.map((p) => (
           <Card p={p} />

@@ -29,9 +29,6 @@ const Dealers = () => {
   const putData = (event) => {
     const { name, value } = event.target;
     updateData({ ...data, [name]: value });
-    console.log("Check datas");
-
-    console.log(data);
   };
   const dataSubmit = (event) => {
     event.preventDefault();
