@@ -266,10 +266,7 @@ const Dealers = () => {
             ))}
         </div>
       </div>
-<<<<<<< Updated upstream
-=======
       <Likes pid="626c7d5ce7e6b806379813fe" />
->>>>>>> Stashed changes
     </>
   );
 };

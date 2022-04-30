@@ -33,23 +33,6 @@ const Details = () => {
 
   const addToCart = () => {
     console.log(productAllDetails);
-
-<<<<<<< Updated upstream
-    setData({ ...data,
-          ['name']:  productTitle,
-          ['asin']:  product_id,
-          ['imageUrl']:  productAllDetails.product_main_image_url,
-          ['manufacturer']:  productAllDetails.product_details['_Manufacturer_'],
-          ['originalPrice']:  Number(productAllDetails.price_information['original_price']),
-          ['price']:  Number(productAllDetails.price_information['app_sale_price']),
-          ['currency']:  productAllDetails.price_information['currency'],
-          ['discount']:  Number(productAllDetails.price_information['discount']),
-          ['discountPercentage']:  Number(productAllDetails.price_information['discount_percentage']),
-        }
-        );
-=======
-
->>>>>>> Stashed changes
     console.log("New vals");
     console.log(product);
     console.log(data);
