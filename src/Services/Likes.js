@@ -1,35 +1,17 @@
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_SARK || "http://localhost:4300/api";
+const IS_LIKED_URL = `${API_URL}/liked`;
+const ADD_LIKE_URL = `${API_URL}/add-like`;
+const REMOVE_LIKE_URL = `${API_URL}/remove-like`;
 
-const ADD_PRODUCT_URL = `${API_URL}/add-product`;
-const REMOVE_PRODUCT_URL = `${API_URL}/remove-product`;
-const GET_PRODUCTS_URL = `${API_URL}/products`;
-const GET_PRODUCTS_BY_NAME_URL = `${API_URL}/search-products`;
-
-export const AddProduct = async (product) => {
+export const IsLikedService = async (productId) => {
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
   const data = await axios.post(
-    ADD_PRODUCT_URL,
+    IS_LIKED_URL,
     {
       id: loginInfo._id,
-      product,
-    },
-    {
-      headers: {
-        authorization: localStorage.getItem("LoginToken"),
-      },
-    }
-  );
-  return data.data;
-};
-export const RemoveProduct = async (pid) => {
-  const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
-  const data = await axios.post(
-    REMOVE_PRODUCT_URL,
-    {
-      id: loginInfo._id,
-      pid,
+      productId,
     },
     {
       headers: {
@@ -40,12 +22,13 @@ export const RemoveProduct = async (pid) => {
   return data.data;
 };
 
-export const GetProducts = async () => {
+export const AddLikeService = async (productId) => {
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
   const data = await axios.post(
-    GET_PRODUCTS_URL,
+    ADD_LIKE_URL,
     {
       id: loginInfo._id,
+      productId,
     },
     {
       headers: {
@@ -53,19 +36,22 @@ export const GetProducts = async () => {
       },
     }
   );
-  return data.data.products;
+  return data.data;
 };
 
-export const GetProductsByName = async (pname) => {
-  // const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
+export const RemoveLikeService = async (productId) => {
+  const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
   const data = await axios.post(
-      GET_PRODUCTS_BY_NAME_URL,
-      {
-        name: pname,
-      }
+    REMOVE_LIKE_URL,
+    {
+      id: loginInfo._id,
+      productId,
+    },
+    {
+      headers: {
+        authorization: localStorage.getItem("LoginToken"),
+      },
+    }
   );
-  console.log("Service data");
-  console.log(data);
-  return data.data.products;
-
+  return data.data;
 };

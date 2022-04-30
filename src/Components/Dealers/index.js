@@ -5,6 +5,7 @@ import {
   getProductsAction,
   RemoveProductAction,
 } from "../Actions/AddProduct";
+import Likes from "../Likes";
 import "./login.css";
 const Dealers = () => {
   const [start, setStart] = useState(true);
@@ -28,9 +29,6 @@ const Dealers = () => {
   const putData = (event) => {
     const { name, value } = event.target;
     updateData({ ...data, [name]: value });
-    console.log("Check datas");
-
-    console.log(data);
   };
   const dataSubmit = (event) => {
     event.preventDefault();
@@ -267,6 +265,7 @@ const Dealers = () => {
         </div>
       </div>
       <Likes pid="626c7d5ce7e6b806379813fe" />
+
     </>
   );
 };
