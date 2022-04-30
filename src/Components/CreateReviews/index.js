@@ -38,8 +38,10 @@ const CreateReviews = () => {
       });
     }
   };
+
   useEffect(()=>{
     setReview({...initReview,rating:val})
+    /* eslint-disable-next-line */
   },[val])
   return (
     <>
