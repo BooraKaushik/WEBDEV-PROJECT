@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import StarRating from "./StarRating";
 import { useSelector } from "react-redux";
 import { isDealerService } from "../../Services/LoginService";
+import {
+    AddProductAction
+} from "../Actions/AddProduct";
 import "./index.css";
 
 const Details = () => {
@@ -12,11 +15,41 @@ const Details = () => {
   const [product, setProduct] = useState([]);
   const [priceInfo, setPriceInfo] = useState([]);
   const [productAllDetails, setProductAllDetails] = useState([]);
+  const [data, setData] = useState({
+    name: "",
+    imageUrl: "",
+    price: 0,
+    manufacturer: "",
+    asin: "",
+    country: "",
+    originalPrice: 0,
+    discount: 0,
+    discountPercentage: 0,
+    currency: "",
+    vid: "",
+  });
   const { product_id } = useParams();
   const login = useSelector((state) => state.LogIn);
 
   const addToCart = () => {
     console.log(productAllDetails);
+
+    setData({ ...data,
+          ['name']:  productTitle,
+          ['asin']:  product_id,
+          ['imageUrl']:  productAllDetails.product_main_image_url,
+          ['manufacturer']:  productAllDetails.product_details['_Manufacturer_'],
+          ['originalPrice']:  Number(productAllDetails.price_information['original_price']),
+          ['price']:  Number(productAllDetails.price_information['app_sale_price']),
+          ['currency']:  productAllDetails.price_information['currency'],
+          ['discount']:  Number(productAllDetails.price_information['discount']),
+          ['discountPercentage']:  Number(productAllDetails.price_information['discount_percentage']),
+        }
+        );
+    console.log("New vals");
+    console.log(product);
+    console.log(data);
+    AddProductAction(data);
   };
   const productDetails = () => {
     const options = {
@@ -25,7 +58,7 @@ const Details = () => {
       params: { country: "US" },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "cce41dfademshe488954231b2a09p1b29e0jsne66353d8d037",
+        "X-RapidAPI-Key": "b3efac4ebcmsh09dea2bbba700d6p1b5d89jsnbf7267d877bc",
       },
     };
 
@@ -43,7 +76,9 @@ const Details = () => {
   };
 
   useEffect(() => {
+      setData([])
     productDetails();
+
     /* eslint-disable-next-line */
   }, []);
 
@@ -52,12 +87,13 @@ const Details = () => {
       <br></br>
       <div>
         <h1>{productTitle}</h1>
+
         <div className="row">
           <h3 className="col">Product Id : {product_id}</h3>
           {login.logedIn && isDealerService() && (
             <button
               className="col-2 btn-primary float-end rounded"
-              onClick={addToCart}
+              onClick={() => {addToCart()}}
             >
               Add Product
             </button>
@@ -130,6 +166,7 @@ const Details = () => {
           {/*    </li>*/}
           {/*)}*/}
         </ul>
+
       </div>
     </div>
   );
