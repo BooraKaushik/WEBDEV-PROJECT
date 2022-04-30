@@ -31,23 +31,13 @@ const Details = () => {
   const { product_id } = useParams();
   const login = useSelector((state) => state.LogIn);
 
-  const addToCart = async () => {
-    await setData({
-      ...data,
-      name: productTitle,
-      asin: product_id,
-      imageUrl: productAllDetails.product_main_image_url,
-      manufacturer: productAllDetails.product_details["_Manufacturer_"],
-      originalPrice: Number(
-        productAllDetails.price_information["original_price"]
-      ),
-      price: Number(productAllDetails.price_information["app_sale_price"]),
-      currency: productAllDetails.price_information["currency"],
-      discount: Number(productAllDetails.price_information["discount"]),
-      discountPercentage: Number(
-        productAllDetails.price_information["discount_percentage"]
-      ),
-    });
+  const addToCart = () => {
+    console.log(productAllDetails);
+    console.log("New vals");
+    console.log(product);
+    console.log(data);
+    AddProductAction(data);
+
   };
   const productDetails = () => {
     const options = {
@@ -67,27 +57,37 @@ const Details = () => {
         setProduct(response.data.product_details);
         setPriceInfo(response.data.price_information);
         setProductAllDetails(response.data);
+        setData({
+          ...data,
+          name: response.data.product_title,
+          asin: product_id,
+          imageUrl: response.data.product_main_image_url,
+          manufacturer: response.data.product_details["_Manufacturer_"],
+          originalPrice: Number(
+              response.data.price_information["original_price"]
+          ),
+          price: Number(response.data.price_information["app_sale_price"]),
+          currency: response.data.price_information["currency"],
+          discount: Number(response.data.price_information["discount"]),
+          discountPercentage: Number(
+              response.data.price_information["discount_percentage"]
+          ),
+        });
       })
       .catch(function (error) {
         console.error(error);
       });
+    console.log(productAllDetails);
+
+
   };
 
   useEffect(() => {
-    if (start) {
       productDetails();
-      setStart(false);
-    } else {
-      console.log(data);
-      AddProductAction(data).then((data) => {
-        if (data.success) {
-          navigate(`/details_db/${data.products._id}`);
-        }
-      });
-    }
+ 
 
     /* eslint-disable-next-line */
-  }, [data]);
+  }, []);
 
   return (
     <div>
