@@ -21,7 +21,7 @@ const Card = () => {
             >
               Previously Liked
             </h4>
-            <div className="wd-view-all">
+            <div className="wd-view-all ">
               <button className="btn btn-primary wd-view-port" type="button">
                 View All
               </button>
@@ -44,7 +44,6 @@ const Card = () => {
               </button>
             </div>
           </div>
-
           {/* <MultiItemCarousel /> */}
         </div>
       )}

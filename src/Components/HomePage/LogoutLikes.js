@@ -108,7 +108,6 @@ const LogOutLikes = () => {
     <>
       <Slider {...properties}>
         {likes?.map((p) => {
-          console.log(p);
           return (
             <Link
               to={`details_db/${p.product._id}`}

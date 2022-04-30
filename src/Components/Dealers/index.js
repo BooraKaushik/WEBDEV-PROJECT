@@ -5,7 +5,6 @@ import {
   getProductsAction,
   RemoveProductAction,
 } from "../Actions/AddProduct";
-import Likes from "../Likes";
 import "./login.css";
 const Dealers = () => {
   const [start, setStart] = useState(true);
@@ -264,7 +263,6 @@ const Dealers = () => {
             ))}
         </div>
       </div>
-      <Likes pid="626881504bf8fdc0b0523577" />
     </>
   );
 };
