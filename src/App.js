@@ -18,6 +18,7 @@ import SecureAdminLogin from "./Components/SecureAdminLogin";
 import UserPublicInformation from "./Components/UserPublicInformation";
 import SecureDealerLogin from "./Components/SecureDealerLogin";
 import Dealers from "./Components/Dealers";
+import CreateReviews from "./Components/CreateReviews";
 
 function App() {
   return (
@@ -81,6 +82,15 @@ function App() {
                 element={
                   <SecureLogin>
                     <UserInformation />
+                  </SecureLogin>
+                }
+              ></Route>
+              <Route
+                path="/profile/create-review/:productID"
+                exact={true}
+                element={
+                  <SecureLogin>
+                    <CreateReviews></CreateReviews>
                   </SecureLogin>
                 }
               ></Route>
