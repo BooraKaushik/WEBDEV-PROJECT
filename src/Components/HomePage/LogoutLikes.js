@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
-import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./multicarousel.css";
+import { findAllLikes } from "../Actions/Likes";
+import { useDispatch, useSelector } from "react-redux";
 
 const PreviousBtn = (props) => {
   const { className, onClick } = props;
@@ -23,46 +24,22 @@ const NextBtn = (props) => {
   );
 };
 
-const MultiItemCarousel = () => {
-  const [product, setProduct] = useState([]);
-
-  const SearchByTitle = () => {
-    var colors = ["apple", "bat", "green", "yellow"];
-    var randColor = colors[Math.floor(Math.random() * colors.length)];
-    const options = {
-      method: "GET",
-      url: "https://amazon24.p.rapidapi.com/api/product",
-      params: {
-        categoryID: "aps",
-        keyword: randColor,
-        country: "US",
-        page: "1",
-      },
-      headers: {
-        "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "c5b9e64302msh923933f0c4afc8ap118668jsne6df2873414a",
-      },
-    };
-    axios
-      .request(options)
-      .then(function (response) {
-        setProduct(response.data.docs.slice(0, 20));
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  };
-
+const LogOutLikes = () => {
+  const likes = useSelector((state) => state.likes);
+  const dispatch = useDispatch();
   useEffect(() => {
-    SearchByTitle();
-  }, []);
+    findAllLikes(dispatch).catch(console.error);
+  }, [dispatch]);
 
   const Card = ({ p }) => {
     return (
       <div style={{ textAlign: "center", margin: "20px" }}>
+        {console.log("rvnsuonuovneoucan")}
+        {console.log(p.product.name)}
+
         <img
           className="multi-image"
-          src={p.product_main_image_url}
+          src={p.product.imgUrl}
           style={{
             width: "100%",
             height: "210px",
@@ -82,14 +59,14 @@ const MultiItemCarousel = () => {
           </div>
         </div>
         <h5 className="text" style={{ fontSize: "15px", padding: "5px 0" }}>
-          {p.product_title}
+          {p.product.name}
         </h5>
         <h5 style={{ fontSize: "15px", padding: "5px 0" }}>
           <span style={{ textDecoration: "line-through", color: "grey" }}>
-            ${Number(p.app_sale_price) + 100}
+            ${Number(p.product.price) + 100}
           </span>
           <span style={{ color: "green", padding: "0px 2px" }}>
-            ${p.app_sale_price}
+            ${p.product.price}
           </span>
         </h5>
       </div>
@@ -132,10 +109,13 @@ const MultiItemCarousel = () => {
 
   return (
     <>
+      {console.log("checking", likes)}
       <Slider {...properties}>
-        {product && product.map((p) => <Card p={p} />)}
+        {likes?.map((p) => (
+          <Card p={p} />
+        ))}
       </Slider>
     </>
   );
 };
-export default MultiItemCarousel;
+export default LogOutLikes;

@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./carousel.css";
+import { useSelector } from "react-redux";
 
 const PreviousBtn = (props) => {
   const { className, onClick } = props;
@@ -21,8 +22,50 @@ const NextBtn = (props) => {
   );
 };
 const Carousel = () => {
+  const login = useSelector((state) => state.LogIn);
   return (
     <>
+    {login.logedIn ? (
+      <Slider
+        autoplay={true}
+        autoplaySpeed={3000}
+        dots={true}
+        prevArrow={<PreviousBtn />}
+        nextArrow={<NextBtn />}
+      >
+        <div>
+          <img
+            src="https://pbs.twimg.com/profile_banners/90662986/1632838580/1080x360"
+            style={{ width: "100%", height: "50vh" }}
+            alt="Profile Banners"
+          />
+        </div>
+
+        <div>
+          <img
+            src="https://pbs.twimg.com/profile_banners/377228272/1649921262/1080x360"
+            style={{ width: "100%", height: "50vh" }}
+            alt="Profile Banners"
+          />
+        </div>
+        <div>
+          <img
+            src="https://pbs.twimg.com/profile_banners/20536157/1651091993/1080x360"
+            style={{ width: "100%", height: "50vh" }}
+            alt="Profile Banners"
+          />
+        </div>
+        <div>
+          <img
+            src="https://pbs.twimg.com/profile_banners/15087766/1621257879/1080x360"
+            style={{ width: "100%", height: "50vh" }}
+            alt="Profile Banners"
+          />
+        
+        </div>
+      </Slider>
+
+    ) :(
       <Slider
         autoplay={true}
         autoplaySpeed={3000}
@@ -53,6 +96,7 @@ const Carousel = () => {
           />
         </div>
       </Slider>
+    )}
     </>
   );
 };
