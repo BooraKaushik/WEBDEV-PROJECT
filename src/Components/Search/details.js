@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import StarRating from "./StarRating";
 import { useSelector } from "react-redux";
 import { isDealerService } from "../../Services/LoginService";
-import {
-    AddProductAction
-} from "../Actions/AddProduct";
+import { AddProductAction } from "../Actions/AddProduct";
 import "./index.css";
 
 const Details = () => {
+  const [start, setStart] = useState(true);
   const [productTitle, setproductTitle] = useState([]);
   const [product, setProduct] = useState([]);
   const [priceInfo, setPriceInfo] = useState([]);
   const [productAllDetails, setProductAllDetails] = useState([]);
+  const navigate = useNavigate();
   const [data, setData] = useState({
     name: "",
     imageUrl: "",
@@ -37,6 +37,7 @@ const Details = () => {
     console.log(product);
     console.log(data);
     AddProductAction(data);
+
   };
   const productDetails = () => {
     const options = {
@@ -82,8 +83,8 @@ const Details = () => {
   };
 
   useEffect(() => {
-      setData([])
-    productDetails();
+      productDetails();
+ 
 
     /* eslint-disable-next-line */
   }, []);
@@ -99,7 +100,9 @@ const Details = () => {
           {login.logedIn && isDealerService() && (
             <button
               className="col-2 btn-primary float-end rounded"
-              onClick={() => {addToCart()}}
+              onClick={() => {
+                addToCart();
+              }}
             >
               Add Product
             </button>
@@ -116,13 +119,13 @@ const Details = () => {
           {Object.keys(product).map((prod) => (
             <li className="list-group-item">
               <div className="row">
-                <div className="col-3 col-sm-2">
+                <div className="col-md-4 ">
                   <span>
-                    <b>{prod}</b>
+                    <b>{prod.replaceAll("_", " ").trim()}</b>
                   </span>{" "}
                   :
                 </div>
-                <div className="col-9 col-sm-10">
+                <div className="col-md-8 ">
                   <span>{product[prod]}</span>
                 </div>
               </div>
@@ -131,13 +134,13 @@ const Details = () => {
           {Object.keys(priceInfo).map((prod) => (
             <li className="list-group-item">
               <div className="row">
-                <div className="col-3 col-sm-2">
+                <div className="col-md-4">
                   <span>
-                    <b>{prod}</b>
+                    <b>{prod.replaceAll("_", " ").trim()}</b>
                   </span>{" "}
                   :
                 </div>
-                <div className="col-9 col-sm-10">
+                <div className="col-md-8">
                   <span>{priceInfo[prod]}</span>
                 </div>
               </div>
@@ -145,34 +148,20 @@ const Details = () => {
           ))}
           <li className="list-group-item">
             <div className="row">
-              <div className="col-3 col-sm-2">
+              <div className="col-md-4">
                 <span>
                   <b>Trusted User Rating</b>
                 </span>{" "}
                 :
               </div>
-              <div className="col-9 col-sm-10">
+              <div className="col-md-8">
                 <span>
                   <StarRating />
                 </span>
               </div>
             </div>
           </li>
-          {/*{Object.keys(productAllDetails.price_information]).map(prod =>*/}
-          {/*    <li className="list-group-item">*/}
-          {/*        <div className="row">*/}
-          {/*            <div className="col-3 col-sm-2">*/}
-          {/*                <span><b>{prod}</b></span> :*/}
-          {/*            </div>*/}
-          {/*            <div className="col-9 col-sm-10">*/}
-          {/*                /!*<span>{productAllDetails[priceInfo][prod]}</span>*!/*/}
-          {/*            </div>*/}
-          {/*        </div>*/}
-
-          {/*    </li>*/}
-          {/*)}*/}
         </ul>
-
       </div>
     </div>
   );

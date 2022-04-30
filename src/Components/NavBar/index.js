@@ -32,32 +32,49 @@ const NavBar = () => {
           <ul className="navbar-nav wd-nav-options">
             <li className="nav-item active mx-3">
               <Link className="wd-nav-bg-color nav-link" to="/">
-                Home
+                <i className="fa-solid fa-house" style={{ color: "white" }}></i>
+                &nbsp;Home
               </Link>
             </li>
             <li className="nav-item active mx-3">
               <Link className="nav-link wd-nav-bg-color" to="search/">
-                Search
+                <i
+                  className="fa-solid fa-magnifying-glass"
+                  style={{ color: "white" }}
+                ></i>
+                &nbsp;Search
               </Link>
             </li>
             {login.logedIn && !isAdminService() && !isDealerService() && (
               <li className="nav-item active mx-3">
                 <Link className="nav-link wd-nav-bg-color" to="/profile">
-                  View Profile
+                  <i
+                    className="fa-solid fa-user"
+                    style={{ color: "white" }}
+                  ></i>
+                  &nbsp;View Profile
                 </Link>
               </li>
             )}
             {login.logedIn && !isAdminService() && isDealerService() && (
               <li className="nav-item active mx-3">
                 <Link className="nav-link wd-nav-bg-color" to="/dealer">
-                  Dealer
+                  <i
+                    className="fa-solid fa-coins"
+                    style={{ color: "white" }}
+                  ></i>
+                  &nbsp;Dealer
                 </Link>
               </li>
             )}
             {login.logedIn && isAdminService() && !isDealerService() && (
               <li className="nav-item active mx-3">
                 <Link className="nav-link wd-nav-bg-color" to="/admin">
-                  Admin
+                  <i
+                    className="fa-solid fa-unlock"
+                    style={{ color: "white" }}
+                  ></i>
+                  &nbsp;Admin
                 </Link>
               </li>
             )}
@@ -71,7 +88,11 @@ const NavBar = () => {
                   }}
                   to="/"
                 >
-                  <strong> LogOut</strong>
+                  <i
+                    className="fa-solid fa-right-from-bracket"
+                    style={{ color: "white" }}
+                  ></i>
+                  <strong> &nbsp;LogOut</strong>
                 </Link>
               </li>
             ) : (
@@ -81,7 +102,11 @@ const NavBar = () => {
                   onClick={() => {}}
                   to="/login"
                 >
-                  <strong> LogIn</strong>
+                  <i
+                    className="fa-solid fa-right-to-bracket"
+                    style={{ color: "white" }}
+                  ></i>
+                  <strong> &nbsp;LogIn</strong>
                 </Link>
               </li>
             )}
