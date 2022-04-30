@@ -5,9 +5,7 @@ import { useParams } from "react-router-dom";
 import StarRating from "./StarRating";
 import { useSelector } from "react-redux";
 import { isDealerService } from "../../Services/LoginService";
-import {
-    AddProductAction
-} from "../Actions/AddProduct";
+import { AddProductAction } from "../Actions/AddProduct";
 import "./index.css";
 
 const Details = () => {
@@ -34,18 +32,22 @@ const Details = () => {
   const addToCart = () => {
     console.log(productAllDetails);
 
-    setData({ ...data,
-          ['name']:  productTitle,
-          ['asin']:  product_id,
-          ['imageUrl']:  productAllDetails.product_main_image_url,
-          ['manufacturer']:  productAllDetails.product_details['_Manufacturer_'],
-          ['originalPrice']:  Number(productAllDetails.price_information['original_price']),
-          ['price']:  Number(productAllDetails.price_information['app_sale_price']),
-          ['currency']:  productAllDetails.price_information['currency'],
-          ['discount']:  Number(productAllDetails.price_information['discount']),
-          ['discountPercentage']:  Number(productAllDetails.price_information['discount_percentage']),
-        }
-        );
+    setData({
+      ...data,
+      name: productTitle,
+      asin: product_id,
+      imageUrl: productAllDetails.product_main_image_url,
+      manufacturer: productAllDetails.product_details["_Manufacturer_"],
+      originalPrice: Number(
+        productAllDetails.price_information["original_price"]
+      ),
+      price: Number(productAllDetails.price_information["app_sale_price"]),
+      currency: productAllDetails.price_information["currency"],
+      discount: Number(productAllDetails.price_information["discount"]),
+      discountPercentage: Number(
+        productAllDetails.price_information["discount_percentage"]
+      ),
+    });
     console.log("New vals");
     console.log(product);
     console.log(data);
@@ -76,7 +78,7 @@ const Details = () => {
   };
 
   useEffect(() => {
-      setData([])
+    setData([]);
     productDetails();
 
     /* eslint-disable-next-line */
@@ -93,7 +95,9 @@ const Details = () => {
           {login.logedIn && isDealerService() && (
             <button
               className="col-2 btn-primary float-end rounded"
-              onClick={() => {addToCart()}}
+              onClick={() => {
+                addToCart();
+              }}
             >
               Add Product
             </button>
@@ -166,7 +170,6 @@ const Details = () => {
           {/*    </li>*/}
           {/*)}*/}
         </ul>
-
       </div>
     </div>
   );
