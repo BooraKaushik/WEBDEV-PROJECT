@@ -2,22 +2,18 @@ import React, { useState, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 import StarRating from "./StarRating";
-import { useSelector } from "react-redux";
 import "./index.css";
 import { getProductsAction } from "../Actions/AddProduct";
+import Likes from "../Likes";
+import { isloggedinService } from "../../Services/LoginService";
 
 const Details_DB = () => {
-  const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
   const { product_id } = useParams();
-  const login = useSelector((state) => state.LogIn);
 
   const getProductsFromDB = async () => {
-    const data = await getProductsAction();
-    let prod = data.filter((val) => val._id === product_id);
-    setProduct(prod[0]);
-
-    await setProducts(data);
+    const data = await getProductsAction(product_id);
+    setProduct(data);
   };
   useEffect(() => {
     getProductsFromDB();
@@ -34,7 +30,7 @@ const Details_DB = () => {
         </div>
 
         <img src={product.imageUrl} height={300} alt="All product Details" />
-
+        {isloggedinService() && <Likes pid={product_id} />}
         <ul className="list-group mt-5">
           <li className="list-group-item">
             <div className="row">

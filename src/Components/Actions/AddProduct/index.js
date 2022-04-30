@@ -1,6 +1,6 @@
 import {
   AddProduct,
-  GetProducts,
+  GetOneProduct,
   RemoveProduct,
 } from "../../../Services/AddProduct";
 
@@ -14,7 +14,7 @@ export const RemoveProductAction = async (aid) => {
   const info = await RemoveProduct(aid);
   return info;
 };
-export const getProductsAction = async () => {
-  const info = await GetProducts();
+export const getProductsAction = async (id) => {
+  const info = await GetOneProduct(id);
   return info;
 };

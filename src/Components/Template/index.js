@@ -8,6 +8,7 @@ import AddPaymentReducer from "../Reducers/AddPaymentReducer";
 import ContactUsReducer from "../Reducers/ContactUsReducer";
 import LogInReducer from "../Reducers/LogInReducer";
 import PrivacyPolicyReducer from "../Reducers/PrivacyPolicyReducer";
+import LikesReducer from "../Reducers/LikesReducer";
 import GetUserDetailsReducer from "../Reducers/GetUserDetails";
 import "./index.css";
 import GetUserPublicDetailsReducer from "../Reducers/GetUserPublicDetails";
@@ -21,6 +22,7 @@ const store = createStore(
     ContactUs: ContactUsReducer,
     UserDetails: GetUserDetailsReducer,
     UserPublicDetails: GetUserPublicDetailsReducer,
+    likes: LikesReducer,
   })
 );
 const Template = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import StarRating from "./StarRating";
 import { useSelector } from "react-redux";
 import { isDealerService } from "../../Services/LoginService";
@@ -9,12 +9,10 @@ import { AddProductAction } from "../Actions/AddProduct";
 import "./index.css";
 
 const Details = () => {
-  const [start, setStart] = useState(true);
   const [productTitle, setproductTitle] = useState([]);
   const [product, setProduct] = useState([]);
   const [priceInfo, setPriceInfo] = useState([]);
   const [productAllDetails, setProductAllDetails] = useState([]);
-  const navigate = useNavigate();
   const [data, setData] = useState({
     name: "",
     imageUrl: "",
@@ -32,12 +30,7 @@ const Details = () => {
   const login = useSelector((state) => state.LogIn);
 
   const addToCart = () => {
-    console.log(productAllDetails);
-    console.log("New vals");
-    console.log(product);
-    console.log(data);
     AddProductAction(data);
-
   };
   const productDetails = () => {
     const options = {
@@ -64,27 +57,23 @@ const Details = () => {
           imageUrl: response.data.product_main_image_url,
           manufacturer: response.data.product_details["_Manufacturer_"],
           originalPrice: Number(
-              response.data.price_information["original_price"]
+            response.data.price_information["original_price"]
           ),
           price: Number(response.data.price_information["app_sale_price"]),
           currency: response.data.price_information["currency"],
           discount: Number(response.data.price_information["discount"]),
           discountPercentage: Number(
-              response.data.price_information["discount_percentage"]
+            response.data.price_information["discount_percentage"]
           ),
         });
       })
       .catch(function (error) {
         console.error(error);
       });
-    console.log(productAllDetails);
-
-
   };
 
   useEffect(() => {
-      productDetails();
- 
+    productDetails();
 
     /* eslint-disable-next-line */
   }, []);

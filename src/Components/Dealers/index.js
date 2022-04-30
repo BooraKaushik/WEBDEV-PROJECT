@@ -264,8 +264,7 @@ const Dealers = () => {
             ))}
         </div>
       </div>
-      <Likes pid="626c7d5ce7e6b806379813fe" />
-
+      <Likes pid="626881504bf8fdc0b0523577" />
     </>
   );
 };

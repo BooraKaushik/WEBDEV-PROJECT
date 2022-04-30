@@ -5,6 +5,7 @@ const API_URL = process.env.REACT_APP_API_SARK || "http://localhost:4300/api";
 const ADD_PRODUCT_URL = `${API_URL}/add-product`;
 const REMOVE_PRODUCT_URL = `${API_URL}/remove-product`;
 const GET_PRODUCTS_URL = `${API_URL}/products`;
+const GET_ONE_PRODUCT_URL = `${API_URL}/product`;
 
 export const AddProduct = async (product) => {
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
@@ -52,5 +53,12 @@ export const GetProducts = async () => {
       },
     }
   );
+  return data.data.products;
+};
+
+export const GetOneProduct = async (id) => {
+  const data = await axios.post(GET_ONE_PRODUCT_URL, {
+    id,
+  });
   return data.data.products;
 };

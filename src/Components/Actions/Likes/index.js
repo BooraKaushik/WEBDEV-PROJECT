@@ -28,4 +28,5 @@ export const findAllLikes = async (dispatch) => {
     type: FIND_ALL_LIKES,
     likes,
   });
+  return likes;
 };

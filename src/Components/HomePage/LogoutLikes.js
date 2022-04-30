@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./multicarousel.css";
 import { findAllLikes } from "../Actions/Likes";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const PreviousBtn = (props) => {
   const { className, onClick } = props;
@@ -36,7 +37,7 @@ const LogOutLikes = () => {
       <div style={{ textAlign: "center", margin: "20px" }}>
         <img
           className="multi-image"
-          src={p.product.imgUrl}
+          src={p.product.imageUrl}
           style={{
             width: "100%",
             height: "210px",
@@ -103,13 +104,20 @@ const LogOutLikes = () => {
       },
     ],
   };
-
   return (
     <>
       <Slider {...properties}>
-        {likes?.map((p) => (
-          <Card p={p} />
-        ))}
+        {likes?.map((p) => {
+          console.log(p);
+          return (
+            <Link
+              to={`details_db/${p.product._id}`}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <Card p={p} />
+            </Link>
+          );
+        })}
       </Slider>
     </>
   );

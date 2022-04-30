@@ -19,7 +19,7 @@ const Card = () => {
               style={{ fontSize: "25px" }}
               className="w-100 wd-top-offers ps-5 pt-2 pb-2"
             >
-              Previously Liked dzhbudvbhyu
+              Previously Liked
             </h4>
             <div className="wd-view-all">
               <button className="btn btn-primary wd-view-port" type="button">
