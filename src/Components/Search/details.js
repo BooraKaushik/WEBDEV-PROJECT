@@ -34,6 +34,7 @@ const Details = () => {
   const addToCart = () => {
     console.log(productAllDetails);
 
+<<<<<<< Updated upstream
     setData({ ...data,
           ['name']:  productTitle,
           ['asin']:  product_id,
@@ -46,6 +47,9 @@ const Details = () => {
           ['discountPercentage']:  Number(productAllDetails.price_information['discount_percentage']),
         }
         );
+=======
+
+>>>>>>> Stashed changes
     console.log("New vals");
     console.log(product);
     console.log(data);
@@ -69,10 +73,29 @@ const Details = () => {
         setProduct(response.data.product_details);
         setPriceInfo(response.data.price_information);
         setProductAllDetails(response.data);
+        setData({
+          ...data,
+          name: response.data.product_title,
+          asin: product_id,
+          imageUrl: response.data.product_main_image_url,
+          manufacturer: response.data.product_details["_Manufacturer_"],
+          originalPrice: Number(
+              response.data.price_information["original_price"]
+          ),
+          price: Number(response.data.price_information["app_sale_price"]),
+          currency: response.data.price_information["currency"],
+          discount: Number(response.data.price_information["discount"]),
+          discountPercentage: Number(
+              response.data.price_information["discount_percentage"]
+          ),
+        });
       })
       .catch(function (error) {
         console.error(error);
       });
+    console.log(productAllDetails);
+
+
   };
 
   useEffect(() => {

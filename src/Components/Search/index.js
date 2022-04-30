@@ -69,6 +69,10 @@ const Search = () => {
             Search
           </button>
         </div>
+        Hello
+        <ul className="list-group">
+          <li className="list-group-item"> From DB</li>
+        </ul>
         <ul className="list-group">
           {products.map((product) => (
             <li
