@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import StarRating from "./StarRating";
 import { useSelector } from "react-redux";
 import { isDealerService } from "../../Services/LoginService";
@@ -13,6 +13,7 @@ const Details = () => {
   const [product, setProduct] = useState([]);
   const [priceInfo, setPriceInfo] = useState([]);
   const [productAllDetails, setProductAllDetails] = useState([]);
+  const navigate = useNavigate();
   const [data, setData] = useState({
     name: "",
     imageUrl: "",
@@ -30,7 +31,9 @@ const Details = () => {
   const login = useSelector((state) => state.LogIn);
 
   const addToCart = () => {
-    AddProductAction(data);
+    AddProductAction(data).then((data) =>
+      data.success ? navigate(`/details_db/${data.products._id}`) : ""
+    );
   };
   const productDetails = () => {
     const options = {
@@ -39,7 +42,7 @@ const Details = () => {
       params: { country: "US" },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "b3efac4ebcmsh09dea2bbba700d6p1b5d89jsnbf7267d877bc",
+        "X-RapidAPI-Key": "1b20a942c2msheea738f48a6280ap1e5e64jsn8694d6ba636e",
       },
     };
 
@@ -61,7 +64,10 @@ const Details = () => {
           ),
           price: Number(response.data.price_information["app_sale_price"]),
           currency: response.data.price_information["currency"],
-          discount: Number(response.data.price_information["discount"]),
+          discount:
+            Number(response.data.price_information["discount"]) < 0
+              ? -1 * Number(response.data.price_information["discount"])
+              : Number(response.data.price_information["discount"]),
           discountPercentage: Number(
             response.data.price_information["discount_percentage"]
           ),
