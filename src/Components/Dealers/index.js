@@ -29,6 +29,9 @@ const Dealers = () => {
   const putData = (event) => {
     const { name, value } = event.target;
     updateData({ ...data, [name]: value });
+    console.log("Check datas");
+
+    console.log(data);
   };
   const dataSubmit = (event) => {
     event.preventDefault();
@@ -248,7 +251,7 @@ const Dealers = () => {
                     <h5 className="card-title">{element.name}</h5>
                     <p className="card-text">Price : {element.price}</p>
                     {element.asin && (
-                      <Link to={`/details/${element.asin}`}>
+                      <Link to={`/details_db/${element._id}`}>
                         <button className="btn btn-primary">Show</button>
                       </Link>
                     )}
