@@ -18,6 +18,7 @@ import SecureAdminLogin from "./Components/SecureAdminLogin";
 import UserPublicInformation from "./Components/UserPublicInformation";
 import SecureDealerLogin from "./Components/SecureDealerLogin";
 import Dealers from "./Components/Dealers";
+import Details_DB from "./Components/Search/details_db";
 
 function App() {
   return (
@@ -125,6 +126,11 @@ function App() {
               exact={true}
               element={<Details />}
             />
+              <Route
+                  path="/details_db/:product_id"
+                  exact={true}
+                  element={<Details_DB />}
+              />
             <Route index element={<Card />}></Route>
           </Route>
         </Routes>
