@@ -28,7 +28,7 @@ const Search = () => {
         headers: {
           "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "b3efac4ebcmsh09dea2bbba700d6p1b5d89jsnbf7267d877bc",
+            "1b20a942c2msheea738f48a6280ap1e5e64jsn8694d6ba636e",
         },
       };
 
@@ -69,6 +69,10 @@ const Search = () => {
             Search
           </button>
         </div>
+        Hello
+        <ul className="list-group">
+          <li className="list-group-item"> From DB</li>
+        </ul>
         <ul className="list-group">
           {products.map((product) => (
             <li

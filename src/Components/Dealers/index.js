@@ -247,7 +247,7 @@ const Dealers = () => {
                     <h5 className="card-title">{element.name}</h5>
                     <p className="card-text">Price : {element.price}</p>
                     {element.asin && (
-                      <Link to={`/details/${element.asin}}`}>
+                      <Link to={`/details_db/${element._id}`}>
                         <button className="btn btn-primary">Show</button>
                       </Link>
                     )}

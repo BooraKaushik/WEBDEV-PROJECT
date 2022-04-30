@@ -1,6 +1,6 @@
 .slick-arrow.slick-prev{
 font-size:40px;
-background:white;
+background:rgba(255, 255, 255, 0.551);
 width:47px;
 height:104px;
 display:flex;
@@ -10,7 +10,7 @@ z-index:1;
 }
 .slick-arrow.slick-next{
 font-size:40px;
-background:white;
+background:rgba(255, 255, 255, 0.551);
 width:47px;
 height:104px;
 display:flex;
@@ -22,6 +22,10 @@ z-index:1;
 .slick-prev::before{
 display:none;
 }
+
+.wd-view-port{
+    font-size: 1.2vw;
+    }
 
 .slick-next::before{
 display:none;
