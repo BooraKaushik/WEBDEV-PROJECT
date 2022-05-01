@@ -16,7 +16,6 @@ const Search = () => {
   const searchProductsByName = async () => {
     if (productRef.current.value !== "") {
       await getProductsByNameAction(productRef.current.value).then((data) => {
-<<<<<<< HEAD
         setDbproducts(data)
       })
 
@@ -31,12 +30,10 @@ const Search = () => {
 
 
   }
-=======
-        setDbproducts(data);
-      });
-    }
-  };
->>>>>>> 272dc152e4d015e636a3129770f1dcc1a16241ce
+
+
+
+
   const searchProducts = () => {
     searchProductsByName();
 
