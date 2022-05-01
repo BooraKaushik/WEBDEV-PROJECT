@@ -7,21 +7,26 @@ import {getProductsByNameAction} from "../Actions/AddProduct";
 const Search = () => {
   const [products, setProducts] = useState([]);
   const [dbproducts, setDbproducts] = useState([]);
+  const [searchText, setSearchText] = useState();
   const { productName } = useParams();
   const Navigate = useNavigate();
   const productRef = useRef();
   var searchString = "";
 
   const searchProductsByName = async () => {
-    console.log("searchProductsByName called");
     if (productRef.current.value !== "") {
-      console.log("From db");
       await getProductsByNameAction(productRef.current.value).then((data) => {
+        setDbproducts(data)
+      })
+
+    }
+    else if (productName !== undefined) {
+      console.log("url data From  db ");
+      await getProductsByNameAction(productName).then((data) => {
         console.log(data);
         setDbproducts(data)
         console.log(dbproducts);
       })
-
     }
 
     console.log(productRef.current.value);
@@ -29,11 +34,13 @@ const Search = () => {
   }
   const searchProducts = () => {
     searchProductsByName();
-    if (productRef.current.value !== null) {
+
+    if (productRef.current.value !== null && productRef.current.value !== "") {
       searchString = productRef.current.value;
     }
     else if (productName !== undefined) {
         searchString = productName;
+        setSearchText(productName);
       }
     if (searchString !== "") {
       const options = {
@@ -56,11 +63,9 @@ const Search = () => {
         .request(options)
         .then(function (response) {
           setProducts(response.data.docs);
-          console.log("From Api");
-          console.log(response.data.docs);
+
         })
         .catch(function (error) {
-          console.error(error);
         });
     }
     Navigate(`/search/${searchString}`);
@@ -82,6 +87,9 @@ const Search = () => {
             className="form-control ms-3 ps-4 rounded-pill w-75 d-inline"
             id="text-fields-search"
             placeholder="Search Product"
+            value = {searchText}
+            onChange={(e) =>
+                setSearchText(e.target.value)}
           />
 
           <button
