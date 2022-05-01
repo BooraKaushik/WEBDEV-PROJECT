@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { Rating } from "@mui/material";
 import { CreateReviewAction } from "../Actions/Reviews";
 import { Link } from "react-router-dom";
-const CreateReviews = ({ productID, product }) => {
+import { getProductAction } from "../Actions/AddProduct";
+import { useDispatch, useSelector } from "react-redux";
+const CreateReviews = ({ productID }) => {
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.products);
   const Review = {
     pid: "",
     review: "",
@@ -29,7 +33,9 @@ const CreateReviews = ({ productID, product }) => {
     updateErrors(validation(initReview));
 
     if (!errors.review) {
-      CreateReviewAction(initReview);
+      CreateReviewAction(initReview).then(() => {
+        getProductAction(productID, dispatch);
+      });
     }
   };
 

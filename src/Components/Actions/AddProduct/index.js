@@ -7,6 +7,7 @@ import {
 } from "../../../Services/AddProduct";
 
 export const ADD_PRODUCT = "ADD_PRODUCT";
+export const SET_PRODUCT = "SET_PRODUCT";
 
 export const AddProductAction = async (address) => {
   const info = await AddProduct(address);
@@ -16,8 +17,12 @@ export const RemoveProductAction = async (aid) => {
   const info = await RemoveProduct(aid);
   return info;
 };
-export const getProductAction = async (id) => {
+export const getProductAction = async (id, dispatch) => {
   const info = await GetOneProduct(id);
+  dispatch({
+    type: SET_PRODUCT,
+    data: info,
+  });
   return info;
 };
 

@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import StarRating from "./StarRating";
 import "./index.css";
 import { getProductAction } from "../Actions/AddProduct";
 import { isloggedinService } from "../../Services/LoginService";
 import Likes from "../Likes";
-import { Rating } from "@mui/material";
 import CreateReviews from "../CreateReviews";
+import { useDispatch, useSelector } from "react-redux";
 
 const Details_DB = () => {
-  const [product, setProduct] = useState({});
   const { product_id } = useParams();
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.products);
 
   const getProductsFromDB = async () => {
-    const data = await getProductAction(product_id);
-    setProduct(data);
+    await getProductAction(product_id, dispatch);
   };
   useEffect(() => {
     getProductsFromDB();
