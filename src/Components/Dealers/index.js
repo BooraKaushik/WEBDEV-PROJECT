@@ -5,7 +5,6 @@ import {
   getProductsAction,
   RemoveProductAction,
 } from "../Actions/AddProduct";
-import Likes from "../Likes";
 import "./login.css";
 const Dealers = () => {
   const [start, setStart] = useState(true);
@@ -238,7 +237,7 @@ const Dealers = () => {
           {products &&
             products.map((element) => (
               <div className="col col-md-6 col-lg-4" key={element._id}>
-                <div className="card wd-card">
+                <div className="card wd-card h-100 pb-5">
                   <img
                     src={element.imageUrl}
                     className="card-img-top"
@@ -249,11 +248,13 @@ const Dealers = () => {
                     <p className="card-text">Price : {element.price}</p>
                     {element.asin && (
                       <Link to={`/details_db/${element._id}`}>
-                        <button className="btn btn-primary">Show</button>
+                        <button className="btn btn-primary position-absolute bottom-0 mx-1 mb-3">
+                          Show
+                        </button>
                       </Link>
                     )}
                     <button
-                      className="btn btn-danger float-end"
+                      className="btn btn-danger position-absolute bottom-0 end-0 me-3 mb-3"
                       onClick={() => deleteItem(element._id)}
                     >
                       Delete

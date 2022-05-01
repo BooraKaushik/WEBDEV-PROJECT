@@ -59,19 +59,17 @@ export const GetProducts = async () => {
 
 export const GetProductsByName = async (pname) => {
   // const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
-  const data = await axios.post(
-      GET_PRODUCTS_BY_NAME_URL,
-      {
-        name: pname,
-      }
-  );
+  const data = await axios.post(GET_PRODUCTS_BY_NAME_URL, {
+    name: pname,
+  });
   console.log("Service data");
   console.log(data);
-  return data.data.products;}
+  return data.data.products;
+};
 
 export const GetOneProduct = async (id) => {
   const data = await axios.post(GET_ONE_PRODUCT_URL, {
     id,
   });
-  return data.data.products;}
+  return data.data.products;
 };
