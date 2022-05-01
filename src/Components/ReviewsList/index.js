@@ -5,7 +5,6 @@ const ReviewsList = ({ Reviews }) => {
     <>
       <div className="list-group">
         {Reviews.map((x) => {
-          console.log(x);
           return (
             <ReviewsListItem
               pid={x.product._id}
