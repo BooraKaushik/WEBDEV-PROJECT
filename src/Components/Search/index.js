@@ -79,23 +79,28 @@ const Search = () => {
     <div className="row wd-bg-image">
       <div className="mt-3 mb-3">
         <div className="mt-1 mb-3 input-icons">
-          <i className="fas fa-search ms-3 mt-2"></i>
+          <div className="row">
+            <div className="col col-10">
+              <i className="fas fa-search wd-icon-pos"></i>
 
-          <input
-            ref={productRef}
-            className="form-control ms-3 ps-4 rounded-pill w-75 d-inline"
-            id="text-fields-search"
-            placeholder="Search Product"
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-          />
-
-          <button
-            className=" btn btn-primary rounded float-end"
-            onClick={() => searchProducts()}
-          >
-            Search
-          </button>
+              <input
+                ref={productRef}
+                className="form-control ms-3 ps-5 rounded-pill w-100 d-inline"
+                id="text-fields-search"
+                placeholder="Search Product"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+              />
+            </div>
+            <div className="col col-2">
+              <button
+                className=" btn btn-primary rounded float-end"
+                onClick={() => searchProducts()}
+              >
+                Search
+              </button>
+            </div>
+          </div>
         </div>
         <ul className="list-group">
           {dbproducts.map((prod) => (
