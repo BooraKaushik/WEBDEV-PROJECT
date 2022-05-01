@@ -16,23 +16,16 @@ const Search = () => {
   const searchProductsByName = async () => {
     if (productRef.current.value !== "") {
       await getProductsByNameAction(productRef.current.value).then((data) => {
-        setDbproducts(data)
-      })
-
-    }
-    else if (productName !== undefined) {
+        setDbproducts(data);
+      });
+    } else if (productName !== undefined) {
       console.log("url data From  db ");
       await getProductsByNameAction(productName).then((data) => {
         console.log(data);
-        setDbproducts(data)
-      })
+        setDbproducts(data);
+      });
     }
-
-
-  }
-
-
-
+  };
 
   const searchProducts = () => {
     searchProductsByName();
