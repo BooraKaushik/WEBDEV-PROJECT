@@ -77,7 +77,6 @@ const Details = () => {
       .catch(function (error) {
         console.error(error);
       });
-    console.log(productAllDetails);
 
 
   };
