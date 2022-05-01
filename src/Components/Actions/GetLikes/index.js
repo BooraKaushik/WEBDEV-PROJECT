@@ -1,8 +1,6 @@
 import {getUserInfo} from "../../../Services/AddAddress"
 
-const GetLikes=async()=>{
+export const GetLikes=async(dispatch)=>{
 const likes= await getUserInfo();
 return likes.user.likes;
 }
-
-export default GetLikes;
