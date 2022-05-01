@@ -2,22 +2,18 @@ import React, { useState, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 import StarRating from "./StarRating";
-import { useSelector } from "react-redux";
 import "./index.css";
-import { getProductsAction } from "../Actions/AddProduct";
+import { getProductAction } from "../Actions/AddProduct";
+import Likes from "../Likes";
+import { isloggedinService } from "../../Services/LoginService";
 
 const Details_DB = () => {
-  const [products, setProducts] = useState([]);
   const [product, setProduct] = useState({});
   const { product_id } = useParams();
-  const login = useSelector((state) => state.LogIn);
 
   const getProductsFromDB = async () => {
-    const data = await getProductsAction();
-    let prod = data.filter((val) => val._id === product_id);
-    setProduct(prod[0]);
-
-    await setProducts(data);
+    const data = await getProductAction(product_id);
+    setProduct(data);
   };
   useEffect(() => {
     getProductsFromDB();
@@ -29,13 +25,21 @@ const Details_DB = () => {
       <br></br>
       <div>
         <h1>{product.name}</h1>
-        <div className="row">
-          <h3 className="col">Product Id : {product_id}</h3>
+        <div className="my-3 mx-auto" style={{ textAlign: "center" }}>
+          <img src={product.imageUrl} height={300} alt="All product Details" />
         </div>
-
-        <img src={product.imageUrl} height={300} alt="All product Details" />
-
-        <ul className="list-group mt-5">
+        {isloggedinService() && (
+          <>
+            <br />
+            <div className="mt-4 mx-4" style={{ fontSize: "30px" }}>
+              <div className="mx-auto">
+                <Likes pid={product_id} />
+              </div>
+              <p style={{ fontSize: "14px" }}>Like</p>
+            </div>
+          </>
+        )}
+        <ul className="list-group mt-3">
           <li className="list-group-item">
             <div className="row">
               <div className="col col-md-4">
@@ -62,19 +66,7 @@ const Details_DB = () => {
               </div>
             </div>
           </li>
-          <li className="list-group-item">
-            <div className="row">
-              <div className="col col-md-4">
-                <span>
-                  <b>imageUrl</b>
-                </span>{" "}
-                :
-              </div>
-              <div className="col col-md-8">
-                <span>{product["imageUrl"]}</span>
-              </div>
-            </div>
-          </li>
+
           <li className="list-group-item">
             <div className="row">
               <div className="col col-md-4">

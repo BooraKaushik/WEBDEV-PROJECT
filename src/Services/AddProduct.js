@@ -6,6 +6,7 @@ const ADD_PRODUCT_URL = `${API_URL}/add-product`;
 const REMOVE_PRODUCT_URL = `${API_URL}/remove-product`;
 const GET_PRODUCTS_URL = `${API_URL}/products`;
 const GET_PRODUCTS_BY_NAME_URL = `${API_URL}/search-products`;
+const GET_ONE_PRODUCT_URL = `${API_URL}/product`;
 
 export const AddProduct = async (product) => {
   const loginInfo = JSON.parse(localStorage.getItem("LoggedIn"));
@@ -66,6 +67,11 @@ export const GetProductsByName = async (pname) => {
   );
   console.log("Service data");
   console.log(data);
-  return data.data.products;
+  return data.data.products;}
 
+export const GetOneProduct = async (id) => {
+  const data = await axios.post(GET_ONE_PRODUCT_URL, {
+    id,
+  });
+  return data.data.products;}
 };
