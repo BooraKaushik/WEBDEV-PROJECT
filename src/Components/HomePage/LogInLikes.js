@@ -26,7 +26,6 @@ const NextBtn = (props) => {
 
 const LogInLikes = () => {
   const [likes, setLikes] = useState([]);
-  console.log("likes", likes);
   useEffect(() => {
     GetLikes().then((data) => setLikes(data));
   }, []);

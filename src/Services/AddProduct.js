@@ -62,8 +62,6 @@ export const GetProductsByName = async (pname) => {
   const data = await axios.post(GET_PRODUCTS_BY_NAME_URL, {
     name: pname,
   });
-  console.log("Service data");
-  console.log(data);
   return data.data.products;
 };
 

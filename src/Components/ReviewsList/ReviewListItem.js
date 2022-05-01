@@ -7,7 +7,8 @@ const ReviewsListItem = ({ pname, review, rating, pid }) => {
       <div className="list-group-item">
         <div className="row">
           <span style={{ fontSize: "1.5rem" }}>
-            Product Name:&nbsp;&nbsp;<Link to={`/product/${pid}`}>{pname}</Link>
+            Product Name:&nbsp;&nbsp;
+            <Link to={`/details_db/${pid}`}>{pname}</Link>
           </span>
         </div>
         <div className="row">

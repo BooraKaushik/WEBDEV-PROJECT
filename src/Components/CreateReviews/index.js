@@ -24,25 +24,20 @@ const CreateReviews = () => {
   const putData = (event) => {
     const { name, value } = event.target;
     setReview({ ...initReview, [name]: value });
-    console.log("review", initReview);
   };
   const dataSubmit = (event) => {
     event.preventDefault();
     updateErrors(validation(initReview));
 
-    console.log("data", initReview);
     if (!errors.review) {
-      CreateReviewAction(initReview).then((data) => {
-        console.log(data);
-        console.log('reviews',initReview);
-      });
+      CreateReviewAction(initReview);
     }
   };
 
-  useEffect(()=>{
-    setReview({...initReview,rating:val})
+  useEffect(() => {
+    setReview({ ...initReview, rating: val });
     /* eslint-disable-next-line */
-  },[val])
+  }, [val]);
   return (
     <>
       <div className="form">
@@ -63,11 +58,12 @@ const CreateReviews = () => {
             name="simple-controlled"
             value={val}
             onChange={(event, newValue) => {
-              if(newValue){
-              setVal(newValue);
-              }else{
+              if (newValue) {
+                setVal(newValue);
+              } else {
                 setVal(0);
-            }}}
+              }
+            }}
           />
         </div>
         <div className="row">
