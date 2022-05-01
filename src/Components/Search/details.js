@@ -9,6 +9,7 @@ import { AddProductAction } from "../Actions/AddProduct";
 import "./index.css";
 
 const Details = () => {
+  const [start, setStart] = useState(true);
   const [productTitle, setproductTitle] = useState([]);
   const [product, setProduct] = useState([]);
   const [priceInfo, setPriceInfo] = useState([]);

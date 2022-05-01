@@ -3,6 +3,7 @@ import {
   GetOneProduct,
   GetProducts,
   RemoveProduct,
+  GetProductsByName
 } from "../../../Services/AddProduct";
 
 export const ADD_PRODUCT = "ADD_PRODUCT";
@@ -24,3 +25,10 @@ export const getProductsAction = async () => {
   const info = await GetProducts();
   return info;
 };
+export const getProductsByNameAction = async (pname) => {
+  const info = await GetProductsByName(pname);
+  console.log("Action data");
+  console.log(info);
+  return info;
+};
+
