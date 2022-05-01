@@ -77,7 +77,7 @@ const LogOutLikes = () => {
     dots: true,
     prevArrow: <PreviousBtn />,
     nextArrow: <NextBtn />,
-    slidesToShow: 4,
+    slidesToShow: likes.length >= 4 ? 4 : 1,
     centerMode: true,
     centerPadding: "150px",
     responsive: [
@@ -111,7 +111,7 @@ const LogOutLikes = () => {
           return (
             <Link
               to={`details_db/${p.product._id}`}
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none" }}
             >
               <Card p={p} />
             </Link>

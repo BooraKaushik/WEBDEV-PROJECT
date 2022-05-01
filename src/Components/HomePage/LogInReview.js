@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { UserPublicDetails } from "../Actions/GetUserPublicInformation";
+import { UserPublicDetails} from "../Actions/GetUserPublicInformation";
 import ReviewsList from "../ReviewsList";
 const LogInReview = () => {
   const user = useSelector((state) => state.UserPublicDetails);

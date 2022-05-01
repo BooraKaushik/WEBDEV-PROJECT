@@ -10,6 +10,3 @@ export const UserPublicDetails = async (dispatch,id) => {
     });
     return user_info;
 }
-
-
-

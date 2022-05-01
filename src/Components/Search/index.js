@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./index.css";
-import {getProductsByNameAction} from "../Actions/AddProduct";
+import { getProductsByNameAction } from "../Actions/AddProduct";
 
 const Search = () => {
   const [products, setProducts] = useState([]);
@@ -16,6 +16,7 @@ const Search = () => {
   const searchProductsByName = async () => {
     if (productRef.current.value !== "") {
       await getProductsByNameAction(productRef.current.value).then((data) => {
+<<<<<<< HEAD
         setDbproducts(data)
       })
 
@@ -30,16 +31,21 @@ const Search = () => {
 
 
   }
+=======
+        setDbproducts(data);
+      });
+    }
+  };
+>>>>>>> 272dc152e4d015e636a3129770f1dcc1a16241ce
   const searchProducts = () => {
     searchProductsByName();
 
     if (productRef.current.value !== null && productRef.current.value !== "") {
       searchString = productRef.current.value;
+    } else if (productName !== undefined) {
+      searchString = productName;
+      setSearchText(productName);
     }
-    else if (productName !== undefined) {
-        searchString = productName;
-        setSearchText(productName);
-      }
     if (searchString !== "") {
       const options = {
         method: "GET",
@@ -61,10 +67,8 @@ const Search = () => {
         .request(options)
         .then(function (response) {
           setProducts(response.data.docs);
-
         })
-        .catch(function (error) {
-        });
+        .catch(function (error) {});
     }
     Navigate(`/search/${searchString}`);
   };
@@ -85,9 +89,8 @@ const Search = () => {
             className="form-control ms-3 ps-4 rounded-pill w-75 d-inline"
             id="text-fields-search"
             placeholder="Search Product"
-            value = {searchText}
-            onChange={(e) =>
-                setSearchText(e.target.value)}
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           />
 
           <button
@@ -97,32 +100,27 @@ const Search = () => {
             Search
           </button>
         </div>
-
-    
-        {/*{dbproducts[0]}*/}
-        {/*{JSON.Stringify(products)}*/}
         <ul className="list-group">
-  
           {dbproducts.map((prod) => (
-              <li
-                  className="list-group-item"
-                  style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
-              >
-                <Link to={`/details_db/${prod._id}`}>
-                  <div className="row">
-                    <div className="col-2">
-                      <img
-                          src={prod.imageUrl}
-                          className="me-3"
-                          height={60}
-                          alt="Product"
-                      />
-                      {/*Heading*/}
-                    </div>
-                    <div className="col-9">{prod.name}</div>
+            <li
+              className="list-group-item"
+              style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
+            >
+              <Link to={`/details_db/${prod._id}`}>
+                <div className="row">
+                  <div className="col-2">
+                    <img
+                      src={prod.imageUrl}
+                      className="me-3"
+                      height={60}
+                      alt="Product"
+                    />
+                    {/*Heading*/}
                   </div>
-                </Link>
-              </li>
+                  <div className="col-9">{prod.name}</div>
+                </div>
+              </Link>
+            </li>
           ))}
           {products.map((product) => (
             <li

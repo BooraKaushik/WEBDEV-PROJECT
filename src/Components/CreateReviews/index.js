@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { Rating } from "@mui/material";
 import { CreateReviewAction } from "../Actions/Reviews";
-const CreateReviews = () => {
+import { Link } from "react-router-dom";
+const CreateReviews = ({ productID, product }) => {
   const Review = {
     pid: "",
     review: "",
@@ -12,8 +12,7 @@ const CreateReviews = () => {
   const [val, setVal] = useState(0);
   Review.rating = val;
   const [errors, updateErrors] = useState({});
-  const productID = useParams();
-  Review.pid = productID.productID;
+  Review.pid = productID;
   const validation = (value) => {
     const errors = {};
     if (!value.review) {
@@ -24,27 +23,76 @@ const CreateReviews = () => {
   const putData = (event) => {
     const { name, value } = event.target;
     setReview({ ...initReview, [name]: value });
-    console.log("review", initReview);
   };
   const dataSubmit = (event) => {
     event.preventDefault();
     updateErrors(validation(initReview));
 
-    console.log("data", initReview);
     if (!errors.review) {
-      CreateReviewAction(initReview).then((data) => {
-        console.log(data);
-        console.log('reviews',initReview);
-      });
+      CreateReviewAction(initReview);
     }
   };
 
-  useEffect(()=>{
-    setReview({...initReview,rating:val})
+  useEffect(() => {
+    setReview({ ...initReview, rating: val });
     /* eslint-disable-next-line */
-  },[val])
+  }, [val]);
   return (
     <>
+      {product.reviews && (
+        <div className="list-group my-3">
+          {product.reviews.map((element) => {
+            return (
+              <div className="list-group-item">
+                <div className="row" style={{ alignItems: "center" }}>
+                  <div className="col col-md-2">
+                    <div className="d-none d-md-block">
+                      <Link
+                        to={`/profile/${element.user._id}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <div
+                          className="p-2 m-auto"
+                          style={{
+                            borderRadius: "50px",
+                            backgroundColor: "gray",
+                            width: "50px",
+                            height: "50px",
+                            textAlign: "center",
+                          }}
+                        >
+                          <h4 style={{ color: "white" }}>
+                            {element.user.firstName.charAt(0) +
+                              element.user.lastName.charAt(0)}
+                          </h4>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="col col-md-10">
+                    <div className="p-3">
+                      <Link
+                        to={`/profile/${element.user._id}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <h4>
+                          {element.user.firstName + " " + element.user.lastName}
+                        </h4>
+                      </Link>
+                      <p>{element.review}</p>
+                      <Rating
+                        name="read-only"
+                        value={element.rating}
+                        readOnly
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
       <div className="form">
         <div class="form-group">
           <label for="review">Review</label>
@@ -63,11 +111,12 @@ const CreateReviews = () => {
             name="simple-controlled"
             value={val}
             onChange={(event, newValue) => {
-              if(newValue){
-              setVal(newValue);
-              }else{
+              if (newValue) {
+                setVal(newValue);
+              } else {
                 setVal(0);
-            }}}
+              }
+            }}
           />
         </div>
         <div className="row">
