@@ -4,6 +4,7 @@ import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./multicarousel.css";
+import { Link } from "react-router-dom";
 
 const PreviousBtn = (props) => {
   const { className, onClick } = props;
@@ -27,7 +28,7 @@ const MultiItemCarousel = () => {
   const [product, setProduct] = useState([]);
 
   const SearchByTitle = () => {
-    var colors = ["apple", "bat", "green", "yellow"];
+    var colors = ["apple", "bat", "green","samsung","glasses","snacks","chairs","kitchen","electronics"];
     var randColor = colors[Math.floor(Math.random() * colors.length)];
     const options = {
       method: "GET",
@@ -40,7 +41,7 @@ const MultiItemCarousel = () => {
       },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "c5b9e64302msh923933f0c4afc8ap118668jsne6df2873414a",
+        "X-RapidAPI-Key": "5a1de3512amshb549a8cbb0e19f3p12aa7ejsn2b84bcb48e2a",
       },
     };
     axios
@@ -72,15 +73,7 @@ const MultiItemCarousel = () => {
           }}
           alt="Product Details"
         />
-        <div className="mt-2 d-flex align-items-center">
-          <div className="small-ratings">
-            {" "}
-            <i className="fa fa-star rating-color"></i>{" "}
-            <i className="fa fa-star rating-color"></i>{" "}
-            <i className="fa fa-star rating-color"></i>{" "}
-            <i className="fa fa-star"></i> <i className="fa fa-star"></i>{" "}
-          </div>
-        </div>
+
         <h5 className="text" style={{ fontSize: "15px", padding: "5px 0" }}>
           {p.product_title}
         </h5>
@@ -133,8 +126,23 @@ const MultiItemCarousel = () => {
   return (
     <>
       <Slider {...properties}>
-        {product && product.map((p) => <Card p={p} />)}
+        {product && product.map((p) =>
+         {
+           
+          return (
+
+            <Link
+              to={`details/${p.product_id}`}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <Card p={p} />
+            </Link>
+          );
+        })}
       </Slider>
+
+
+    
     </>
   );
 };

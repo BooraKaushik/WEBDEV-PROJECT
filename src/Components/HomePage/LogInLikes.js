@@ -44,15 +44,7 @@ const LogInLikes = () => {
           }}
           alt="Product Details"
         />
-        <div className="mt-2 d-flex align-items-center">
-          <div className="small-ratings">
-            {" "}
-            <i className="fa fa-star rating-color"></i>{" "}
-            <i className="fa fa-star rating-color"></i>{" "}
-            <i className="fa fa-star rating-color"></i>{" "}
-            <i className="fa fa-star"></i> <i className="fa fa-star"></i>{" "}
-          </div>
-        </div>
+
         <h5 className="text" style={{ fontSize: "15px", padding: "5px 0" }}>
           {p.product.name}
         </h5>
@@ -71,7 +63,7 @@ const LogInLikes = () => {
     dots: true,
     prevArrow: <PreviousBtn />,
     nextArrow: <NextBtn />,
-    slidesToShow: 4,
+    slidesToShow: likes.length >= 4 ? 4 : 1,
     centerMode: true,
     centerPadding: "150px",
     responsive: [

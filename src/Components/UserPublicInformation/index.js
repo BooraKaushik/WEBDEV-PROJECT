@@ -8,6 +8,7 @@ const UserPublicInformation = () => {
   const dispatch = useDispatch();
   const userID = useParams();
   useEffect(() => {
+    console.log(userID.userID);
     UserPublicDetails(dispatch,userID.userID).catch(console.error);
   }, [dispatch,userID.userID]);
   return (
