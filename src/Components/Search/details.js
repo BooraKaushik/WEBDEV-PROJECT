@@ -39,7 +39,7 @@ const Details = () => {
       params: { country: "US" },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "1b20a942c2msheea738f48a6280ap1e5e64jsn8694d6ba636e",
+        "X-RapidAPI-Key": "0b303aa7fbmshc91b46141d98326p14c149jsnf8b239dc4460",
       },
     };
 
@@ -87,16 +87,18 @@ const Details = () => {
         <h1>{productTitle}</h1>
 
         <div className="row">
-          {login.logedIn && isDealerService() && (
-            <button
-              className="col-2 btn-primary float-end rounded"
-              onClick={() => {
-                addToCart();
-              }}
-            >
-              Add Product
-            </button>
-          )}
+          <div clasSNAME="col">
+            {login.logedIn && isDealerService() && (
+              <button
+                className="col-2 btn-primary float-end rounded"
+                onClick={() => {
+                  addToCart();
+                }}
+              >
+                Add Product
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="my-3 mx-auto" style={{ textAlign: "center" }}>
