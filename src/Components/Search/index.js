@@ -2,19 +2,39 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./index.css";
+import {getProductsByNameAction} from "../Actions/AddProduct";
 
 const Search = () => {
   const [products, setProducts] = useState([]);
+  const [dbproducts, setDbproducts] = useState([]);
   const { productName } = useParams();
   const Navigate = useNavigate();
   const productRef = useRef();
   var searchString = "";
+
+  const searchProductsByName = async () => {
+    console.log("searchProductsByName called");
+    if (productRef.current.value !== "") {
+      console.log("From db");
+      await getProductsByNameAction(productRef.current.value).then((data) => {
+        console.log(data);
+        setDbproducts(data)
+        console.log(dbproducts);
+      })
+
+    }
+
+    console.log(productRef.current.value);
+
+  }
   const searchProducts = () => {
-    if (productName !== undefined) {
-      searchString = productName;
-    } else {
+    searchProductsByName();
+    if (productRef.current.value !== null) {
       searchString = productRef.current.value;
     }
+    else if (productName !== undefined) {
+        searchString = productName;
+      }
     if (searchString !== "") {
       const options = {
         method: "GET",
@@ -36,6 +56,8 @@ const Search = () => {
         .request(options)
         .then(function (response) {
           setProducts(response.data.docs);
+          console.log("From Api");
+          console.log(response.data.docs);
         })
         .catch(function (error) {
           console.error(error);
@@ -69,11 +91,33 @@ const Search = () => {
             Search
           </button>
         </div>
-        Hello
+
+    
+        {/*{dbproducts[0]}*/}
+        {/*{JSON.Stringify(products)}*/}
         <ul className="list-group">
-          <li className="list-group-item"> From DB</li>
-        </ul>
-        <ul className="list-group">
+  
+          {dbproducts.map((prod) => (
+              <li
+                  className="list-group-item"
+                  style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
+              >
+                <Link to={`/details_db/${prod._id}`}>
+                  <div className="row">
+                    <div className="col-2">
+                      <img
+                          src={prod.imageUrl}
+                          className="me-3"
+                          height={60}
+                          alt="Product"
+                      />
+                      {/*Heading*/}
+                    </div>
+                    <div className="col-9">{prod.name}</div>
+                  </div>
+                </Link>
+              </li>
+          ))}
           {products.map((product) => (
             <li
               className="list-group-item"

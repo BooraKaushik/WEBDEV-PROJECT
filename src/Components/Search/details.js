@@ -9,6 +9,7 @@ import { AddProductAction } from "../Actions/AddProduct";
 import "./index.css";
 
 const Details = () => {
+  const [start, setStart] = useState(true);
   const [productTitle, setproductTitle] = useState([]);
   const [product, setProduct] = useState([]);
   const [priceInfo, setPriceInfo] = useState([]);
@@ -31,9 +32,12 @@ const Details = () => {
   const login = useSelector((state) => state.LogIn);
 
   const addToCart = () => {
-    AddProductAction(data).then((data) =>
-      data.success ? navigate(`/details_db/${data.products._id}`) : ""
-    );
+    console.log(productAllDetails);
+    console.log("New vals");
+    console.log(product);
+    console.log(data);
+    AddProductAction(data);
+
   };
   const productDetails = () => {
     const options = {
@@ -42,7 +46,7 @@ const Details = () => {
       params: { country: "US" },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "1b20a942c2msheea738f48a6280ap1e5e64jsn8694d6ba636e",
+        "X-RapidAPI-Key": "b3efac4ebcmsh09dea2bbba700d6p1b5d89jsnbf7267d877bc",
       },
     };
 
@@ -60,26 +64,27 @@ const Details = () => {
           imageUrl: response.data.product_main_image_url,
           manufacturer: response.data.product_details["_Manufacturer_"],
           originalPrice: Number(
-            response.data.price_information["original_price"]
+              response.data.price_information["original_price"]
           ),
           price: Number(response.data.price_information["app_sale_price"]),
           currency: response.data.price_information["currency"],
-          discount:
-            Number(response.data.price_information["discount"]) < 0
-              ? -1 * Number(response.data.price_information["discount"])
-              : Number(response.data.price_information["discount"]),
+          discount: Number(response.data.price_information["discount"]),
           discountPercentage: Number(
-            response.data.price_information["discount_percentage"]
+              response.data.price_information["discount_percentage"]
           ),
         });
       })
       .catch(function (error) {
         console.error(error);
       });
+    console.log(productAllDetails);
+
+
   };
 
   useEffect(() => {
-    productDetails();
+      productDetails();
+ 
 
     /* eslint-disable-next-line */
   }, []);

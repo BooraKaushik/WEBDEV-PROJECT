@@ -60,6 +60,9 @@ const LogOutLikes = () => {
           {p.product.name}
         </h5>
         <h5 style={{ fontSize: "15px", padding: "5px 0" }}>
+          <span style={{ textDecoration: "line-through", color: "grey" }}>
+            ${Number(p.product.price) + 100}
+          </span>
           <span style={{ color: "green", padding: "0px 2px" }}>
             ${p.product.price}
           </span>
