@@ -14,7 +14,6 @@ const SideBar = () => {
                 textColor="black"
                 backgroundColor="lightgray"
                 breakpoint={1200}
-                toggled
             >
                 <CDBSidebarContent className="sidebar-content">
                     <NavLink
@@ -47,6 +46,14 @@ const SideBar = () => {
                     >
                         <CDBSidebarMenuItem icon="pen" style={{color: "black"}}>
                             Reviews
+                        </CDBSidebarMenuItem>
+                    </NavLink>
+                    <NavLink
+                        to="/profile/likes"
+                        style={{textDecoration: "none"}}
+                    >
+                        <CDBSidebarMenuItem icon="heart" style={{color: "black"}}>
+                            Liked Products
                         </CDBSidebarMenuItem>
                     </NavLink>
                 </CDBSidebarContent>

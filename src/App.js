@@ -21,6 +21,7 @@ import Dealers from "./Components/Dealers";
 import CreateReviews from "./Components/CreateReviews";
 import GetReviews from "./Components/GetReviews";
 import DetailsDB from "./Components/Search/details_db";
+import CardsLike from "./Components/CardsLike";
 
 function App() {
   return (
@@ -129,6 +130,15 @@ function App() {
                 element={
                   <SecureLogin>
                     <GetReviews />
+                  </SecureLogin>
+                }
+              ></Route>
+              <Route
+                path="/profile/likes"
+                exact={true}
+                element={
+                  <SecureLogin>
+                    <CardsLike />
                   </SecureLogin>
                 }
               ></Route>
