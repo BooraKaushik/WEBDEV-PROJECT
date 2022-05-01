@@ -7,6 +7,7 @@ import { getProductsByNameAction } from "../Actions/AddProduct";
 const Search = () => {
   const [products, setProducts] = useState([]);
   const [dbproducts, setDbproducts] = useState([]);
+  const [searchText, setSearchText] = useState();
   const { productName } = useParams();
   const Navigate = useNavigate();
   const productRef = useRef();
@@ -21,10 +22,12 @@ const Search = () => {
   };
   const searchProducts = () => {
     searchProductsByName();
-    if (productRef.current.value !== null) {
+
+    if (productRef.current.value !== null && productRef.current.value !== "") {
       searchString = productRef.current.value;
     } else if (productName !== undefined) {
       searchString = productName;
+      setSearchText(productName);
     }
     if (searchString !== "") {
       const options = {
@@ -48,9 +51,7 @@ const Search = () => {
         .then(function (response) {
           setProducts(response.data.docs);
         })
-        .catch(function (error) {
-          console.error(error);
-        });
+        .catch(function (error) {});
     }
     Navigate(`/search/${searchString}`);
   };
@@ -71,6 +72,8 @@ const Search = () => {
             className="form-control ms-3 ps-4 rounded-pill w-75 d-inline"
             id="text-fields-search"
             placeholder="Search Product"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
           />
 
           <button
