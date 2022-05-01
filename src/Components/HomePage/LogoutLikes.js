@@ -111,7 +111,7 @@ const LogOutLikes = () => {
           return (
             <Link
               to={`details_db/${p.product._id}`}
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none" }}
             >
               <Card p={p} />
             </Link>

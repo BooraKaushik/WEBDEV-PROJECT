@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import StarRating from "./StarRating";
 import "./index.css";
 import { getProductAction } from "../Actions/AddProduct";
 import { isloggedinService } from "../../Services/LoginService";
 import Likes from "../Likes";
+import { Rating } from "@mui/material";
 
 const Details_DB = () => {
   const [product, setProduct] = useState({});
@@ -163,6 +164,63 @@ const Details_DB = () => {
             </div>
           </li>
         </ul>
+        {product.reviews && (
+          <div className="list-group my-3">
+            {product.reviews.map((element) => {
+              return (
+                <div className="list-group-item">
+                  <div className="row" style={{ alignItems: "center" }}>
+                    <div className="col col-md-2">
+                      <div className="d-none d-md-block">
+                        <Link
+                          to={`/profile/${element.user._id}`}
+                          style={{ textDecoration: "none" }}
+                        >
+                          <div
+                            className="p-2 m-auto"
+                            style={{
+                              borderRadius: "50px",
+                              backgroundColor: "gray",
+                              width: "50px",
+                              height: "50px",
+                              textAlign: "center",
+                            }}
+                          >
+                            <h4 style={{ color: "white" }}>
+                              {element.user.firstName.charAt(0) +
+                                element.user.lastName.charAt(0)}
+                            </h4>
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="col col-md-10">
+                      <div className="p-3">
+                        <Link
+                          to={`/profile/${element.user._id}`}
+                          style={{ textDecoration: "none" }}
+                        >
+                          <h4>
+                            {element.user.firstName +
+                              " " +
+                              element.user.lastName}
+                          </h4>
+                        </Link>
+                        <p>{element.review}</p>
+                        <Rating
+                          name="read-only"
+                          value={element.rating}
+                          readOnly
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+        {isloggedinService && <div>hello</div>}
       </div>
     </div>
   );

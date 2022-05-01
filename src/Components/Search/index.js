@@ -83,9 +83,6 @@ const Search = () => {
             Search
           </button>
         </div>
-
-        {/*{dbproducts[0]}*/}
-        {/*{JSON.Stringify(products)}*/}
         <ul className="list-group">
           {dbproducts.map((prod) => (
             <li
