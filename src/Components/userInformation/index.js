@@ -12,7 +12,7 @@ const UserInformation = () => {
   }, [dispatch]);
   return (
     <>
-      <div className="row m-0">
+      <div className="row my-4">
         <div className="col-9 ps-0">
           <span className="wd-font-color mt-2" style={{ fontSize: "1.5rem" }}>
             User Information

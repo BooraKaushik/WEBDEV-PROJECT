@@ -5,6 +5,7 @@ import Carousel from "./Carousel";
 import LogInLikes from "./LogInLikes";
 import LogOutLikes from "./LogoutLikes";
 import MultiItemCarousel from "./MultiItemCarousel";
+import "./CardItem.css";
 
 const Card = () => {
   const login = useSelector((state) => state.LogIn);
@@ -16,10 +17,15 @@ const Card = () => {
     <>
       {login.logedIn && (
         <div className="text-end mt-2">
-          <h6 className="mb-0"> welcome, {login.user.userData.firstName}</h6>
+          <h6 className="wd-welcome">
+            {" "}
+            <strong>
+              Welcome, {JSON.parse(localStorage.getItem("LoggedIn"))?.firstName}
+            </strong>
+          </h6>
         </div>
       )}
-      <div className="pt-4 wd-carousel">
+      <div className="pt-2 wd-carousel">
         <Carousel />
       </div>
       <br />

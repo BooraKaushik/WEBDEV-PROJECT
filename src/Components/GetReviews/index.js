@@ -6,6 +6,10 @@ const GetReviews = () => {
   useEffect(() => {
     GetReviewsAction().then((data) => setReviews(data));
   }, []);
-  return <ReviewsList Reviews={reviews} />;
+  return (
+    <div className="my-4">
+      <ReviewsList Reviews={reviews} />
+    </div>
+  );
 };
 export default GetReviews;

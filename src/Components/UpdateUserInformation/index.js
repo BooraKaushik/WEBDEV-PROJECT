@@ -94,7 +94,7 @@ const UpdateUserInformation = () => {
   };
   return (
     <>
-      <div className="row">
+      <div className="row my-4">
         <div className="col-2">
           <NavLink to="/profile">
             <IconButton children={<CloseIcon />} style={{ color: "black" }} />
@@ -105,9 +105,9 @@ const UpdateUserInformation = () => {
             Edit Profile
           </span>
         </div>
-        <div className="col-2">
+        <div className="col col-md-2">
           <div
-            className="btn mt-1"
+            className="btn mt-3 mt-md-1 w-100"
             style={{ background: "lightblue" }}
             onClick={(event) => dataSubmit(event)}
           >

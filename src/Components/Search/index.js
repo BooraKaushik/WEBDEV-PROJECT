@@ -98,7 +98,7 @@ const Search = () => {
             >
               <Link to={`/details_db/${prod._id}`}>
                 <div className="row">
-                  <div className="col-2">
+                  <div className="col col-md-3">
                     <img
                       src={prod.imageUrl}
                       className="me-3"
@@ -107,7 +107,7 @@ const Search = () => {
                     />
                     {/*Heading*/}
                   </div>
-                  <div className="col-9">{prod.name}</div>
+                  <div className="col col-md-9">{prod.name}</div>
                 </div>
               </Link>
             </li>
@@ -119,7 +119,7 @@ const Search = () => {
             >
               <Link to={`/details/${product.product_id}`}>
                 <div className="row">
-                  <div className="col-2">
+                  <div className="col col-md-3">
                     <img
                       src={product.product_main_image_url}
                       className="me-3"
@@ -127,7 +127,7 @@ const Search = () => {
                       alt="Product"
                     />
                   </div>
-                  <div className="col-9">{product.product_title}</div>
+                  <div className="col col-md-9">{product.product_title}</div>
                 </div>
               </Link>
             </li>

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 import { useParams } from "react-router-dom";
-import StarRating from "./StarRating";
 import "./index.css";
 import { getProductAction } from "../Actions/AddProduct";
 import { isloggedinService } from "../../Services/LoginService";
@@ -70,7 +69,7 @@ const DetailsDB = () => {
               </div>
             </div>
           </li>
-          <li className="list-group-item">
+          {/* <li className="list-group-item">
             <div className="row">
               <div className="col col-md-4">
                 <span>
@@ -82,7 +81,7 @@ const DetailsDB = () => {
                 <span>{product["imageUrl"]}</span>
               </div>
             </div>
-          </li>
+          </li> */}
           <li className="list-group-item">
             <div className="row">
               <div className="col col-md-4">
@@ -149,7 +148,7 @@ const DetailsDB = () => {
               </div>
             </div>
           </li>
-          <li className="list-group-item">
+          {/* <li className="list-group-item">
             <div className="row">
               <div className="col col-md-4">
                 <span>
@@ -163,7 +162,7 @@ const DetailsDB = () => {
                 </span>
               </div>
             </div>
-          </li>
+          </li> */}
         </ul>
         <div>
           <CreateReviews productID={product_id} product={product} />

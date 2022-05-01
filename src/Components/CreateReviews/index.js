@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getProductAction } from "../Actions/AddProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { isloggedinService } from "../../Services/LoginService";
+import { DeleteReviewsAction } from "../Actions/GetReviews";
 const CreateReviews = ({ productID }) => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products);
@@ -33,11 +34,16 @@ const CreateReviews = ({ productID }) => {
     event.preventDefault();
     updateErrors(validation(initReview));
 
-    if (!errors.review) {
+    if (!errors.review && initReview.review !== "") {
       CreateReviewAction(initReview).then(() => {
         getProductAction(productID, dispatch);
       });
     }
+  };
+  const deleteReview = (id) => {
+    DeleteReviewsAction(id).then(() => {
+      getProductAction(productID, dispatch);
+    });
   };
 
   useEffect(() => {
@@ -52,8 +58,8 @@ const CreateReviews = ({ productID }) => {
             return (
               <div className="list-group-item">
                 <div className="row" style={{ alignItems: "center" }}>
-                  <div className="col col-md-2">
-                    <div className="d-none d-md-block">
+                  <div className="col-2">
+                    <div>
                       <Link
                         to={`/profile/${element.user._id}`}
                         style={{ textDecoration: "none" }}
@@ -76,7 +82,15 @@ const CreateReviews = ({ productID }) => {
                       </Link>
                     </div>
                   </div>
-                  <div className="col col-md-10">
+                  <div className="col-10">
+                    <div
+                      className="position-absolute top-0 end-0"
+                      onClick={() => {
+                        deleteReview(element._id);
+                      }}
+                    >
+                      <i class="m-3 fa-solid fa-xmark"></i>
+                    </div>
                     <div className="p-3">
                       <Link
                         to={`/profile/${element.user._id}`}
