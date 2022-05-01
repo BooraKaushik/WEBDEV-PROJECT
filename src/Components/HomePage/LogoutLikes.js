@@ -74,7 +74,7 @@ const LogOutLikes = () => {
     dots: true,
     prevArrow: <PreviousBtn />,
     nextArrow: <NextBtn />,
-    slidesToShow: 4,
+    slidesToShow: likes.length >= 4 ? 4 : 1,
     centerMode: true,
     centerPadding: "150px",
     responsive: [
