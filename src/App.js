@@ -20,6 +20,7 @@ import SecureDealerLogin from "./Components/SecureDealerLogin";
 import Dealers from "./Components/Dealers";
 import CreateReviews from "./Components/CreateReviews";
 import Details_DB from "./Components/Search/details_db";
+import GetReviews from "./Components/GetReviews";
 
 function App() {
   return (
@@ -119,6 +120,15 @@ function App() {
                 element={
                   <SecureLogin>
                     <UpdateUserInformation />
+                  </SecureLogin>
+                }
+              ></Route>
+              <Route
+                path="/profile/reviews"
+                exact={true}
+                element={
+                  <SecureLogin>
+                    <GetReviews />
                   </SecureLogin>
                 }
               ></Route>

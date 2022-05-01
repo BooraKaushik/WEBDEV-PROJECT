@@ -13,9 +13,6 @@ const UserPublicInformation = () => {
   }, [dispatch,userID.userID]);
   return (
     <>
-      <div className="row">
-        <span style={{ fontSize: "3rem" }}>User Details:</span>
-      </div>
       <div className="row" style={{ fontSize: "1.5rem" }}>
         <span>
           Name:&nbsp;&nbsp;&nbsp;{user.firstName}&nbsp;{user.lastName}

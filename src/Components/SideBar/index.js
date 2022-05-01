@@ -41,6 +41,14 @@ const SideBar = () => {
                             Payments
                         </CDBSidebarMenuItem>
                     </NavLink>
+                    <NavLink
+                        to="/profile/reviews"
+                        style={{textDecoration: "none"}}
+                    >
+                        <CDBSidebarMenuItem icon="pen" style={{color: "black"}}>
+                            Reviews
+                        </CDBSidebarMenuItem>
+                    </NavLink>
                 </CDBSidebarContent>
             </CDBSidebar>
         </div>

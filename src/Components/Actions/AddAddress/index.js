@@ -20,5 +20,6 @@ export const getAddressAction = async (dispatch) => {
     type: ADD_ADDRESS,
     address: info.user.address,
   });
+  console.log('info',info);
   return info.user.address;
 };
