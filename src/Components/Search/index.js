@@ -48,7 +48,7 @@ const Search = () => {
         headers: {
           "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "b3efac4ebcmsh09dea2bbba700d6p1b5d89jsnbf7267d877bc",
+            "1b20a942c2msheea738f48a6280ap1e5e64jsn8694d6ba636e",
         },
       };
 
@@ -91,13 +91,10 @@ const Search = () => {
             Search
           </button>
         </div>
-        Hello
-        <ul className="list-group">
-          <li className="list-group-item"> From DB</li>
-        </ul>
+
     
-        {dbproducts[0]}
-        {/*{JSON.Stringify(dbproducts)}*/}
+        {/*{dbproducts[0]}*/}
+        {/*{JSON.Stringify(products)}*/}
         <ul className="list-group">
   
           {dbproducts.map((prod) => (
@@ -105,7 +102,7 @@ const Search = () => {
                   className="list-group-item"
                   style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
               >
-                <Link to={`/details/${prod._id}`}>
+                <Link to={`/details_db/${prod._id}`}>
                   <div className="row">
                     <div className="col-2">
                       <img
@@ -114,6 +111,7 @@ const Search = () => {
                           height={60}
                           alt="Product"
                       />
+                      {/*Heading*/}
                     </div>
                     <div className="col-9">{prod.name}</div>
                   </div>
