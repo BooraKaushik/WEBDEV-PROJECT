@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import Carousel from "./Carousel";
+import LogInLikes from "./LogInLikes";
 import LogOutLikes from "./LogoutLikes";
 
 const Card = () => {
@@ -44,7 +45,7 @@ const Card = () => {
               </button>
             </div>
           </div>
-          {/* <MultiItemCarousel /> */}
+          <LogInLikes />
         </div>
       )}
     </>
