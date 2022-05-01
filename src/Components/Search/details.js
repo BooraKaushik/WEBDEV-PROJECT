@@ -37,7 +37,6 @@ const Details = () => {
     console.log(product);
     console.log(data);
     AddProductAction(data);
-
   };
   const productDetails = () => {
     const options = {
@@ -64,13 +63,15 @@ const Details = () => {
           imageUrl: response.data.product_main_image_url,
           manufacturer: response.data.product_details["_Manufacturer_"],
           originalPrice: Number(
-              response.data.price_information["original_price"]
+            response.data.price_information["original_price"]
           ),
           price: Number(response.data.price_information["app_sale_price"]),
           currency: response.data.price_information["currency"],
-          discount: Number(response.data.price_information["discount"]),
+          discount: Number(response.data.price_information["discount"])
+            ? -1 * Number(response.data.price_information["discount"])
+            : Number(response.data.price_information["discount"]),
           discountPercentage: Number(
-              response.data.price_information["discount_percentage"]
+            response.data.price_information["discount_percentage"]
           ),
         });
       })
@@ -78,13 +79,10 @@ const Details = () => {
         console.error(error);
       });
     console.log(productAllDetails);
-
-
   };
 
   useEffect(() => {
-      productDetails();
- 
+    productDetails();
 
     /* eslint-disable-next-line */
   }, []);
