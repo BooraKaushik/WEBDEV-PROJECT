@@ -25,11 +25,9 @@ const Search = () => {
       await getProductsByNameAction(productName).then((data) => {
         console.log(data);
         setDbproducts(data)
-        console.log(dbproducts);
       })
     }
 
-    console.log(productRef.current.value);
 
   }
   const searchProducts = () => {
