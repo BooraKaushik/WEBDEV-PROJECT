@@ -110,7 +110,7 @@ const LogOutLikes = () => {
         {likes?.map((p) => {
           return (
             <Link
-              to={`details_db/${p.product._id}`}
+              to={`/details_db/${p.product._id}`}
               style={{ textDecoration: "none" }}
             >
               <Card p={p} />

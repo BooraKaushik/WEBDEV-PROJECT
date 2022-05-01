@@ -10,9 +10,11 @@ const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark wd-bg-color">
       <div className="container">
-        <span className="navbar-brand mx-1 mx-md-3 mb-0 h1 wd-nav-bg-color">
-          SARK
-        </span>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="navbar-brand mx-1 mx-md-3 mb-0 h1 wd-nav-bg-color">
+            SARK
+          </span>
+        </Link>
         <button
           className="navbar-toggler ms-auto"
           type="button"
@@ -45,7 +47,7 @@ const NavBar = () => {
                 &nbsp;Search
               </Link>
             </li>
-            {login.logedIn && !isAdminService() && !isDealerService() && (
+            {login.logedIn && (
               <li className="nav-item active mx-3">
                 <Link className="nav-link wd-nav-bg-color" to="/profile">
                   <i

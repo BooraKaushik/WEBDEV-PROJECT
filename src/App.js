@@ -19,8 +19,8 @@ import UserPublicInformation from "./Components/UserPublicInformation";
 import SecureDealerLogin from "./Components/SecureDealerLogin";
 import Dealers from "./Components/Dealers";
 import CreateReviews from "./Components/CreateReviews";
-import Details_DB from "./Components/Search/details_db";
 import GetReviews from "./Components/GetReviews";
+import DetailsDB from "./Components/Search/details_db";
 
 function App() {
   return (
@@ -146,11 +146,11 @@ function App() {
               exact={true}
               element={<Details />}
             />
-              <Route
-                  path="/details_db/:product_id"
-                  exact={true}
-                  element={<Details_DB />}
-              />
+            <Route
+              path="/details_db/:product_id"
+              exact={true}
+              element={<DetailsDB />}
+            />
             <Route index element={<Card />}></Route>
           </Route>
         </Routes>

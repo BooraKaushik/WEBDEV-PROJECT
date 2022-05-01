@@ -4,6 +4,7 @@ import { CreateReviewAction } from "../Actions/Reviews";
 import { Link } from "react-router-dom";
 import { getProductAction } from "../Actions/AddProduct";
 import { useDispatch, useSelector } from "react-redux";
+import { isloggedinService } from "../../Services/LoginService";
 const CreateReviews = ({ productID }) => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products);
@@ -99,42 +100,44 @@ const CreateReviews = ({ productID }) => {
           })}
         </div>
       )}
-      <div className="form">
-        <div class="form-group">
-          <label for="review">Review</label>
-          <textarea
-            class="form-control"
-            id="review"
-            name="review"
-            rows="4"
-            onChange={(event) => putData(event)}
-          ></textarea>
-          <p className="text-danger">{errors.review ? errors.review : ""}</p>
+      {isloggedinService() && (
+        <div className="form">
+          <div class="form-group">
+            <label for="review">Review</label>
+            <textarea
+              class="form-control"
+              id="review"
+              name="review"
+              rows="4"
+              onChange={(event) => putData(event)}
+            ></textarea>
+            <p className="text-danger">{errors.review ? errors.review : ""}</p>
+          </div>
+          <div className="row">
+            <span>Rating&nbsp;&nbsp;</span>
+            <Rating
+              name="simple-controlled"
+              value={val}
+              onChange={(event, newValue) => {
+                if (newValue) {
+                  setVal(newValue);
+                } else {
+                  setVal(0);
+                }
+              }}
+            />
+          </div>
+          <div className="row">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onClick={(event) => dataSubmit(event)}
+            >
+              Add Review
+            </button>
+          </div>
         </div>
-        <div className="row">
-          <span>Rating&nbsp;&nbsp;</span>
-          <Rating
-            name="simple-controlled"
-            value={val}
-            onChange={(event, newValue) => {
-              if (newValue) {
-                setVal(newValue);
-              } else {
-                setVal(0);
-              }
-            }}
-          />
-        </div>
-        <div className="row">
-          <button
-            type="button"
-            class="btn btn-primary"
-            onClick={(event) => dataSubmit(event)}
-          >
-            Add Review
-          </button>
-        </div>
-      </div>
+      )}
     </>
   );
 };

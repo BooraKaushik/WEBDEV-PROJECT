@@ -93,16 +93,17 @@ const LogInLikes = () => {
   return (
     <>
       <Slider {...properties}>
-        {likes?.map((p) => {
-          return (
-            <Link
-              to={`details_db/${p.product._id}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <Card p={p} />
-            </Link>
-          );
-        })}
+        {likes.length > 0 &&
+          likes?.map((p) => {
+            return (
+              <Link
+                to={`/details_db/${p.product._id}`}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <Card p={p} />
+              </Link>
+            );
+          })}
       </Slider>
     </>
   );

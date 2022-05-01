@@ -9,7 +9,7 @@ import Likes from "../Likes";
 import CreateReviews from "../CreateReviews";
 import { useDispatch, useSelector } from "react-redux";
 
-const Details_DB = () => {
+const DetailsDB = () => {
   const { product_id } = useParams();
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products);
@@ -165,14 +165,12 @@ const Details_DB = () => {
             </div>
           </li>
         </ul>
-        {isloggedinService && (
-          <div>
-            <CreateReviews productID={product_id} product={product} />
-          </div>
-        )}
+        <div>
+          <CreateReviews productID={product_id} product={product} />
+        </div>
       </div>
     </div>
   );
 };
 
-export default Details_DB;
+export default DetailsDB;
