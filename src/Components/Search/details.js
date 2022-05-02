@@ -87,16 +87,18 @@ const Details = () => {
         <h1>{productTitle}</h1>
 
         <div className="row">
-          {login.logedIn && isDealerService() && (
-            <button
-              className="col-2 btn-primary float-end rounded"
-              onClick={() => {
-                addToCart();
-              }}
-            >
-              Add Product
-            </button>
-          )}
+          <div clasSNAME="col">
+            {login.logedIn && isDealerService() && (
+              <button
+                className="col-2 btn-primary float-end rounded"
+                onClick={() => {
+                  addToCart();
+                }}
+              >
+                Add Product
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="my-3 mx-auto" style={{ textAlign: "center" }}>

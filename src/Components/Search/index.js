@@ -93,47 +93,100 @@ const Search = () => {
             </div>
           </div>
         </div>
-        <ul className="list-group">
-          {dbproducts.map((prod) => {
-            return (
-              <li
-                className="list-group-item"
-                style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
+        <div className="accordion" id="accordionPanelsStayOpenExample">
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="panelsStayOpen-headingOne">
+              <button
+                className="accordion-button wd-my-list-button"
+                color="blue"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne"
+                aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne"
               >
-                <Link to={`/details_db/${prod._id}`} key={"l" + prod._id}>
-                  <div className="row" key={prod._id}>
-                    <div className="col col-md-3">
-                      <img src={prod.imageUrl} height={60} alt="Product" />
-                    </div>
-                    <div className="col col-md-9">{prod.name}</div>
-                  </div>
-                </Link>
-              </li>
-            );
-          })}
-          {products.map((product) => {
-            return (
-              <li
-                className="list-group-item"
-                style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
-                key={"l" + product.product_id}
+                <strong>From the DB</strong>
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseOne"
+              className="accordion-collapse collapse show"
+              aria-labelledby="panelsStayOpen-headingOne"
+            >
+              <div className="accordion-body">
+                <ul className="list-group">
+                  {dbproducts.map((prod) => (
+                    <li
+                      className="list-group-item"
+                      style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
+                      key={"l" + prod._id}
+                    >
+                      <Link to={`/details_db/${prod._id}`}>
+                        <div className="row">
+                          <div className="col-2">
+                            <img
+                              src={prod.imageUrl}
+                              className="me-3"
+                              height={60}
+                              alt="Product"
+                            />
+                            {/*Heading*/}
+                          </div>
+                          <div className="col-9">{prod.name}</div>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
+              <button
+                className="accordion-button collapsed rounded"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseTwo"
+                aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseTwo"
               >
-                <Link to={`/details/${product.product_id}`}>
-                  <div className="row">
-                    <div className="col col-md-3">
-                      <img
-                        src={product.product_main_image_url}
-                        height={60}
-                        alt="Product"
-                      />
-                    </div>
-                    <div className="col col-md-9">{product.product_title}</div>
-                  </div>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+                <strong>From 3rd Party Api</strong>
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseTwo"
+              className="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingTwo"
+            >
+              <div className="accordion-body">
+                <ul className="list-group">
+                  {products.map((product) => (
+                    <li
+                      className="list-group-item"
+                      style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
+                      key={"l" + product.product_id}
+                    >
+                      <Link to={`/details/${product.product_id}`}>
+                        <div className="row">
+                          <div className="col-2">
+                            <img
+                              src={product.product_main_image_url}
+                              className="me-3"
+                              height={60}
+                              alt="Product"
+                            />
+                          </div>
+                          <div className="col-9">{product.product_title}</div>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
