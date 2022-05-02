@@ -120,6 +120,11 @@ button.btn.btn-link i {
     text-align: center;
 }
 
+.wd-my-list-button {
+    background-color: red;
+    color: blue;
+}
+
 .wd-icon-pos {
     margin-top: 10px;
     margin-left: 30px;
