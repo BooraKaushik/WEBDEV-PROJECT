@@ -47,23 +47,17 @@ const LogOutLikes = () => {
           }}
           alt="Product Details"
         />
-        <div className="mt-2 d-flex align-items-center">
-          <div className="small-ratings">
-            {" "}
-            <i className="fa fa-star rating-color"></i>{" "}
-            <i className="fa fa-star rating-color"></i>{" "}
-            <i className="fa fa-star rating-color"></i>{" "}
-            <i className="fa fa-star"></i> <i className="fa fa-star"></i>{" "}
-          </div>
-        </div>
         <h5 className="text" style={{ fontSize: "15px", padding: "5px 0" }}>
           {p.product.name}
         </h5>
         <h5 style={{ fontSize: "15px", padding: "5px 0" }}>
-          <span style={{ textDecoration: "line-through", color: "grey" }}>
-            ${Number(p.product.price) + 100}
-          </span>
-          <span style={{ color: "green", padding: "0px 2px" }}>
+          <span
+            style={{
+              color: "green",
+              padding: "0px 2px",
+              textDecoration: "none",
+            }}
+          >
             ${p.product.price}
           </span>
         </h5>
@@ -112,8 +106,9 @@ const LogOutLikes = () => {
             <Link
               to={`/details_db/${p.product._id}`}
               style={{ textDecoration: "none" }}
+              key={"l" + p._id}
             >
-              <Card p={p} />
+              <Card p={p} key={p._id} />
             </Link>
           );
         })}

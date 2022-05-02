@@ -99,8 +99,9 @@ const LogInLikes = () => {
               <Link
                 to={`/details_db/${p.product._id}`}
                 style={{ textDecoration: "none", color: "black" }}
+                key={"l" + p.product_id}
               >
-                <Card p={p} />
+                <Card p={p} key={p.product_id} />
               </Link>
             );
           })}

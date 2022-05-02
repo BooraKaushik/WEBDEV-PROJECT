@@ -144,7 +144,7 @@ const CreateReviews = ({ productID }) => {
           <div className="row">
             <button
               type="button"
-              class="btn btn-primary"
+              class="btn btn-primary my-2"
               onClick={(event) => dataSubmit(event)}
             >
               Add Review

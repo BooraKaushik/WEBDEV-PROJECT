@@ -40,11 +40,6 @@ const Card = () => {
               >
                 Previously Liked
               </h4>
-              <div className="wd-view-all">
-                <button className="btn btn-primary wd-view-port" type="button">
-                  View All
-                </button>
-              </div>
             </div>
             <LogOutLikes />
           </div>

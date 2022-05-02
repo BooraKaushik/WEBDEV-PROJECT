@@ -236,8 +236,8 @@ const Dealers = () => {
         <div className="row">
           {products &&
             products.map((element) => (
-              <div className="col col-md-6 col-lg-4" key={element._id}>
-                <div className="card wd-card h-100 pb-5">
+              <div className="col col-xl-4 my-2" key={element._id}>
+                <div className="card wd-card h-100">
                   <img
                     src={element.imageUrl}
                     className="card-img-top"
@@ -246,19 +246,26 @@ const Dealers = () => {
                   <div className="card-body">
                     <h5 className="card-title">{element.name}</h5>
                     <p className="card-text">Price : {element.price}</p>
-                    {element.asin && (
-                      <Link to={`/details_db/${element._id}`}>
-                        <button className="btn btn-primary position-absolute bottom-0 mx-1 mb-3">
-                          Show
-                        </button>
-                      </Link>
-                    )}
-                    <button
-                      className="btn btn-danger position-absolute bottom-0 end-0 me-3 mb-3"
-                      onClick={() => deleteItem(element._id)}
-                    >
-                      Delete
-                    </button>
+                  </div>
+
+                  <div className="row mx-auto mb-auto">
+                    <div className="col-12 w-100 my-3">
+                      {element.asin && (
+                        <Link to={`/details_db/${element._id}`}>
+                          <button className="btn btn-primary w-100">
+                            Show
+                          </button>
+                        </Link>
+                      )}
+                    </div>
+                    <div className="col-12 w-100 mb-3">
+                      <button
+                        className="btn btn-danger w-100"
+                        onClick={() => deleteItem(element._id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

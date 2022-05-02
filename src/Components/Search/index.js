@@ -19,9 +19,7 @@ const Search = () => {
         setDbproducts(data);
       });
     } else if (productName !== undefined) {
-      console.log("url data From  db ");
       await getProductsByNameAction(productName).then((data) => {
-        console.log(data);
         setDbproducts(data);
       });
     }
@@ -96,47 +94,45 @@ const Search = () => {
           </div>
         </div>
         <ul className="list-group">
-          {dbproducts.map((prod) => (
-            <li
-              className="list-group-item"
-              style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
-            >
-              <Link to={`/details_db/${prod._id}`}>
-                <div className="row">
-                  <div className="col col-md-3">
-                    <img
-                      src={prod.imageUrl}
-                      className="me-3"
-                      height={60}
-                      alt="Product"
-                    />
-                    {/*Heading*/}
+          {dbproducts.map((prod) => {
+            return (
+              <li
+                className="list-group-item"
+                style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
+              >
+                <Link to={`/details_db/${prod._id}`} key={"l" + prod._id}>
+                  <div className="row" key={prod._id}>
+                    <div className="col col-md-3">
+                      <img src={prod.imageUrl} height={60} alt="Product" />
+                    </div>
+                    <div className="col col-md-9">{prod.name}</div>
                   </div>
-                  <div className="col col-md-9">{prod.name}</div>
-                </div>
-              </Link>
-            </li>
-          ))}
-          {products.map((product) => (
-            <li
-              className="list-group-item"
-              style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
-            >
-              <Link to={`/details/${product.product_id}`}>
-                <div className="row">
-                  <div className="col col-md-3">
-                    <img
-                      src={product.product_main_image_url}
-                      className="me-3"
-                      height={60}
-                      alt="Product"
-                    />
+                </Link>
+              </li>
+            );
+          })}
+          {products.map((product) => {
+            return (
+              <li
+                className="list-group-item"
+                style={{ backgroundColor: "rgba(137, 215, 245, 0.83)" }}
+                key={"l" + product.product_id}
+              >
+                <Link to={`/details/${product.product_id}`}>
+                  <div className="row">
+                    <div className="col col-md-3">
+                      <img
+                        src={product.product_main_image_url}
+                        height={60}
+                        alt="Product"
+                      />
+                    </div>
+                    <div className="col col-md-9">{product.product_title}</div>
                   </div>
-                  <div className="col col-md-9">{product.product_title}</div>
-                </div>
-              </Link>
-            </li>
-          ))}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

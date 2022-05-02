@@ -28,7 +28,17 @@ const MultiItemCarousel = () => {
   const [product, setProduct] = useState([]);
 
   const SearchByTitle = () => {
-    var colors = ["apple", "bat", "green","samsung","glasses","snacks","chairs","kitchen","electronics"];
+    var colors = [
+      "apple",
+      "bat",
+      "green",
+      "samsung",
+      "glasses",
+      "snacks",
+      "chairs",
+      "kitchen",
+      "electronics",
+    ];
     var randColor = colors[Math.floor(Math.random() * colors.length)];
     const options = {
       method: "GET",
@@ -74,10 +84,15 @@ const MultiItemCarousel = () => {
           alt="Product Details"
         />
 
-        <h5 className="text" style={{ fontSize: "15px", padding: "5px 0" }}>
+        <h5
+          className="text"
+          style={{ fontSize: "15px", padding: "5px 0", textDecoration: "none" }}
+        >
           {p.product_title}
         </h5>
-        <h5 style={{ fontSize: "15px", padding: "5px 0" }}>
+        <h5
+          style={{ fontSize: "15px", padding: "5px 0", textDecoration: "none" }}
+        >
           <span style={{ textDecoration: "line-through", color: "grey" }}>
             ${Number(p.app_sale_price) + 100}
           </span>
@@ -126,23 +141,19 @@ const MultiItemCarousel = () => {
   return (
     <>
       <Slider {...properties}>
-        {product && product.map((p) =>
-         {
-           
-          return (
-
-            <Link
-              to={`details/${p.product_id}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <Card p={p} />
-            </Link>
-          );
-        })}
+        {product &&
+          product.map((p) => {
+            return (
+              <Link
+                to={`details/${p.product_id}`}
+                style={{ textDecoration: "none", color: "black" }}
+                key={"l" + p.product_id}
+              >
+                <Card p={p} key={p.product_id} />
+              </Link>
+            );
+          })}
       </Slider>
-
-
-    
     </>
   );
 };

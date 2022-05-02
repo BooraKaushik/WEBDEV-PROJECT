@@ -8,12 +8,11 @@ const UserPublicInformation = () => {
   const dispatch = useDispatch();
   const userID = useParams();
   useEffect(() => {
-    console.log(userID.userID);
-    UserPublicDetails(dispatch,userID.userID).catch(console.error);
-  }, [dispatch,userID.userID]);
+    UserPublicDetails(dispatch, userID.userID).catch(console.error);
+  }, [dispatch, userID.userID]);
   return (
     <>
-      <div className="row" style={{ fontSize: "1.5rem" }}>
+      <div className="row mt-4" style={{ fontSize: "1.5rem" }}>
         <span>
           Name:&nbsp;&nbsp;&nbsp;{user.firstName}&nbsp;{user.lastName}
         </span>
