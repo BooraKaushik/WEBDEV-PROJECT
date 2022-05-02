@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import StarRating from "./StarRating";
 import { useSelector } from "react-redux";
 import { isDealerService } from "../../Services/LoginService";
 import { AddProductAction } from "../Actions/AddProduct";
@@ -39,7 +38,7 @@ const Details = () => {
       params: { country: "US" },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "0b303aa7fbmshc91b46141d98326p14c149jsnf8b239dc4460",
+        "X-RapidAPI-Key": "7c3530cf95msh4a42849e06f7945p146398jsne990820a2f14",
       },
     };
 
@@ -87,7 +86,7 @@ const Details = () => {
         <h1>{productTitle}</h1>
 
         <div className="row">
-          <div clasSNAME="col">
+          <div className="col">
             {login.logedIn && isDealerService() && (
               <button
                 className="col-2 btn-primary float-end rounded"
@@ -140,7 +139,7 @@ const Details = () => {
               </div>
             </li>
           ))}
-          <li className="list-group-item">
+          {/* <li className="list-group-item">
             <div className="row">
               <div className="col-md-4">
                 <span>
@@ -154,7 +153,7 @@ const Details = () => {
                 </span>
               </div>
             </div>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

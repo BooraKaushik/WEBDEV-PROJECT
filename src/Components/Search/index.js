@@ -47,7 +47,7 @@ const Search = () => {
         headers: {
           "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
           "X-RapidAPI-Key":
-            "0b303aa7fbmshc91b46141d98326p14c149jsnf8b239dc4460",
+            "7c3530cf95msh4a42849e06f7945p146398jsne990820a2f14",
         },
       };
 

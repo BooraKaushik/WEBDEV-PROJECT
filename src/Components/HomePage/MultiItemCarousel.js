@@ -51,7 +51,7 @@ const MultiItemCarousel = () => {
       },
       headers: {
         "X-RapidAPI-Host": "amazon24.p.rapidapi.com",
-        "X-RapidAPI-Key": "5a1de3512amshb549a8cbb0e19f3p12aa7ejsn2b84bcb48e2a",
+        "X-RapidAPI-Key": "7c3530cf95msh4a42849e06f7945p146398jsne990820a2f14",
       },
     };
     axios
