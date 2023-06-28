@@ -8,6 +8,11 @@ import {
   RemoveAddressAction,
 } from "../Actions/AddAddress";
 
+/**
+ * This Component refers to the component that adds the address.
+ * @returns DOM for add address Component.
+ */
+
 const AddAddress = () => {
   const [start, setStart] = useState(true);
   const states = [
@@ -79,6 +84,9 @@ const AddAddress = () => {
     const { name, value } = event.target;
     setData({ ...data, [name]: value });
   };
+
+  // This Function Validates the address obtained and returns the errors.
+
   const validation = (value) => {
     const errors = {};
     if (!value.addressLine) {
@@ -97,6 +105,8 @@ const AddAddress = () => {
     }
     return errors;
   };
+
+  // This Function Submits the Address data.
   const dataSubmit = (event) => {
     event.preventDefault();
     updateErrors(validation(data));
@@ -122,6 +132,7 @@ const AddAddress = () => {
       });
     }
   }, [errors, start, data, dispatch, navigate, valid]);
+
   return (
     <div className="my-5">
       <ul className="list-group">

@@ -60,9 +60,10 @@ const Details = () => {
           ),
           price: Number(response.data.price_information["app_sale_price"]),
           currency: response.data.price_information["currency"],
-          discount: Number(response.data.price_information["discount"])
-            ? -1 * Number(response.data.price_information["discount"])
-            : Number(response.data.price_information["discount"]),
+          discount:
+            Number(response.data.price_information["discount"]) < 0
+              ? -1 * Number(response.data.price_information["discount"])
+              : Number(response.data.price_information["discount"]),
           discountPercentage: Number(
             response.data.price_information["discount_percentage"]
           ),
