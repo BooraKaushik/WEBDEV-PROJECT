@@ -1,4 +1,4 @@
-# SARK Product Review Site
+# SARK Product Review Site - Frontend
 
 This Project is Developed as a part of course CS5610. It is Developed by Kaushik Boora, Rahul Reddy Baddam, Sai Sriker Reddy Vootukuri and Abhishek Kumar.
 This Repository contains the code for the Frontend of SARK Product review site.
@@ -7,6 +7,7 @@ This Repository contains the code for the Frontend of SARK Product review site.
 
 SARK Product review site is a website where users can lookup for products and rate them, developed using React, Redux, HTML5, CSS3, Bootstrap technologies on the frontend.
 The site essentially uses a Free Open API service that provides product information. This product Information can be stored on Database. This site assumes there are 3 types of users, Customer, Dealer and Admin.
+For the Backend Code of this project Please visit [SARK Product Review Site - Backend](https://github.com/BooraKaushik/SARK-Product-Review-Site-Backend)
 
 ## Features
 
