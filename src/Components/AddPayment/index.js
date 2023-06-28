@@ -8,6 +8,11 @@ import {
   RemovePaymentAction,
 } from "../Actions/AddPayment";
 
+/**
+ * This Component Provides Add Payment layout. This essentially adds payment related Info of the user.
+ * @returns  DOM for Add Payment Component.
+ */
+
 const AddPayment = () => {
   const [start, setStart] = useState(true);
   const dispatch = useDispatch();
@@ -26,6 +31,7 @@ const AddPayment = () => {
     const { name, value } = event.target;
     setData({ ...data, [name]: value });
   };
+
   const validation = (value) => {
     const errors = {};
     if (!value.type) {
@@ -46,6 +52,7 @@ const AddPayment = () => {
     }
     return errors;
   };
+
   const dataSubmit = (event) => {
     event.preventDefault();
     updateErrors(validation(data));
@@ -55,6 +62,7 @@ const AddPayment = () => {
   const deletePayment = (aid) => {
     RemovePaymentAction(aid).then(() => getPaymentAction(dispatch));
   };
+
   useEffect(() => {
     if (start) {
       setStart(false);
@@ -70,6 +78,7 @@ const AddPayment = () => {
       });
     }
   }, [dispatch, start, navigate, data, errors, valid]);
+
   return (
     <>
       <div className="my-5">
